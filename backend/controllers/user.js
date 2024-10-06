@@ -1,4 +1,5 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const Jwt = require("jsonwebtoken");
 
 const userModel = require("../models/userSchema");
 const register = (req, res) => {
@@ -14,16 +15,14 @@ const register = (req, res) => {
   newUser
     .save()
     .then((result) => {
-      res
-        .status(201)
-        .json({
-          success: true,
-          message: "Account Created Successfully",
-          author: result,
-        });
+      res.status(201).json({
+        success: true,
+        message: "Account Created Successfully",
+        author: result,
+      });
     })
     .catch((err) => {
-        console.log(err.message)
+      console.log(err.message);
 
       res.status(409).json({
         success: false,
@@ -31,4 +30,43 @@ const register = (req, res) => {
       });
     });
 };
-module.exports = register;
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await userModel.findOne({ email }).populate("role");
+    if (user) {
+      const isEqual = await bcrypt.compare(password, user.password);
+      if (isEqual) {
+        const payload = {
+          userId: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+        };
+        const options = { expiresIn: "60m" };
+        const token = Jwt.sign(payload, process.env.SECRET, options);
+
+        res.status(200).json({
+          success: true,
+          massage: "Valid login credentials",
+          token: token,
+          role: user.role,
+        });
+      } else {
+        res.status(403).json({
+          success: false,
+          massage: "password is wrong ",
+        });
+      }
+    } else {
+      throw err;
+    }
+  } catch (err) {
+    res.status(403).json({
+      success: false,
+      massage: "The email doesn’t exist ",
+    });
+  }
+};
+
+module.exports = { register, login };
