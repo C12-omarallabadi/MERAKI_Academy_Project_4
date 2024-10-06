@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const userModel = require("../models/userSchema");
 const register = (req, res) => {
   const { firstName, lastName, age, email, password, role } = req.body;
