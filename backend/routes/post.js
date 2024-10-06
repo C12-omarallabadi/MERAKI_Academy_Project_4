@@ -6,6 +6,7 @@ const {
   getMyPosts,
   deletePostById,
   updatePostById,
+  addRemoveReact
 } = require("../controllers/post");
 
 const authentication = require("../middleware/authentication");
@@ -21,5 +22,7 @@ postRouter.delete(
   deletePostById
 );
 postRouter.put("/:id", authentication, updatePostById);
+postRouter.put("/reacts/:id", authentication, addRemoveReact);
+
 
 module.exports = postRouter;

@@ -5,7 +5,7 @@ const authorization = require("../middleware/authorization");
 const {createComment,deleteComment }= require("../controllers/comment");
 
 
-commentRouter.post("/", authentication, createComment);
+commentRouter.post("/:id", authentication, createComment);
 commentRouter.delete("/:id", authentication, deleteComment);
 
 module.exports = commentRouter;
