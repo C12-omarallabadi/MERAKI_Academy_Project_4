@@ -69,5 +69,11 @@ const login = async (req, res) => {
     });
   }
 };
+const getUserById=(req,res)=>{
+    userModel.findOne({_id:req.params.id})
+    .then((result)=>{
+        if(!result){res.status(404).json("no user have thid id")}else{res.status(200).json(result)}})
+    .catch((err=>{res.status(500).json(err.message)}))
 
-module.exports =  {register, login} ;
+}
+module.exports =  {register, login,getUserById} ;
