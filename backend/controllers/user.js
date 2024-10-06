@@ -32,6 +32,7 @@ const register = (req, res) => {
 };
 const login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const user = await userModel.findOne({ email }).populate("role");
     if (user) {
@@ -69,4 +70,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+module.exports =  {register, login} ;
