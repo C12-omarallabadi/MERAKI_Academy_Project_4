@@ -54,4 +54,19 @@ const deletePostById = (req, res) => {
     });
 };
 
-module.exports = { createPost, getAllPosts, getMyPosts, deletePostById };
+const updatePostById=(req,res)=>{
+    postModel
+    .findByIdAndUpdate(req.params.id, {post:req.body.post})
+    .then((result) => {
+      if (!result) {
+        res.status(404).json("no post have this id");
+      }
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+        
+      res.status(404).json(err.message);
+    });
+}
+
+module.exports = { createPost, getAllPosts, getMyPosts, deletePostById, updatePostById };
