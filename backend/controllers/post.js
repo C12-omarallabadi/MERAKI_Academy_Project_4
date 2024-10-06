@@ -15,33 +15,43 @@ const getAllPosts = (req, res) => {
   postModel
     .find({})
     .then((result) => {
-        if(result.length==0){
-            res.status(404).json("no posts");
-
-
-        }
-        else{
-        res.status(200).json(result)};
+      if (result.length == 0) {
+        res.status(404).json("no posts");
+      } else {
+        res.status(200).json(result);
+      }
     })
     .catch((err) => {
       res.status(500).json(err.message);
     });
 };
 const getMyPosts = (req, res) => {
-    postModel
-      .find({author:req.payload.userId})
-      .then((result) => {
-        if(result.length==0){
-            res.status(404).json("no posts");
+  postModel
+    .find({ author: req.payload.userId })
+    .then((result) => {
+      if (result.length == 0) {
+        res.status(404).json("no posts");
+      } else {
+        res.status(200).json(result);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err.message);
+    });
+};
 
+const deletePostById = (req, res) => {
+  postModel
+    .findByIdAndDelete(req.params.id)
+    .then((result) => {
+      if (!result) {
+        res.status(404).json("no post have this id");
+      }
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(404).json(err.message);
+    });
+};
 
-        }
-        else{
-        res.status(200).json(result)};
-      })
-      .catch((err) => {
-        res.status(500).json(err.message);
-      });
-  };
-  
-module.exports = { createPost, getAllPosts,getMyPosts };
+module.exports = { createPost, getAllPosts, getMyPosts, deletePostById };
