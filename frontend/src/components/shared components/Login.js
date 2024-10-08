@@ -19,7 +19,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log("failed");
-      });
+      });//
   };
 
   return (
