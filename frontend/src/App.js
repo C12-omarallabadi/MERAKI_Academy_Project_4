@@ -1,11 +1,24 @@
-import React from 'react'
+import React,{useEffect} from "react";
 import "./App.css";
-const App = () => {
-  return (
-   <div className="App">
-      <h1>Hello World!</h1>
-    </div>
-  )
-}
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import Login from "./components/shared components/Login";
+import Register from "./components/shared components/Register";
 
-export default App
+
+const App = () => {
+  const Navigate=useNavigate()
+  useEffect(()=>{Navigate("/login")},[])
+  return (
+    <div className="App">
+       <Routes>
+       <Route path="/login" element={<Login />} /> 
+       <Route path="/register" element={<Register/>} /> 
+
+      
+      </Routes>
+     
+    </div>
+  );
+};
+
+export default App;
