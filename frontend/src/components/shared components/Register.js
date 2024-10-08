@@ -20,10 +20,12 @@ const Register = () => {
         email: email,
         password: password,
       })
-      .then(() => {
+      .then((result) => {
+
+
         console.log("done");
       })
-      .catch(() => {
+      .catch((err) => {
         console.log("failed");
       });
   };
