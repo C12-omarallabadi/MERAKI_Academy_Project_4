@@ -5,6 +5,8 @@ import Login from "./components/shared components/Login";
 import Register from "./components/shared components/Register";
 import AdminDashboard from "./components/role 1 interface/AdminDashboard";
 import UserDashboard from "./components/role 2 interface/UserDashboard";
+
+
 const App = () => {
   const Navigate = useNavigate();
   useEffect(() => {
@@ -12,12 +14,15 @@ const App = () => {
   }, []);
   return (
     <div className="App">
+      
+      
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
       </Routes>
+      
     </div>
   );
 };

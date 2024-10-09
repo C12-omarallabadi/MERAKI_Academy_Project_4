@@ -1,0 +1,9 @@
+.post{
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(194, 161, 226);
+}
+.postSection{
+    display: inline-flex;
+    flex-direction: column;
+gap: 10px;}
