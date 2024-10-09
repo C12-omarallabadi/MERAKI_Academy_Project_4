@@ -15,7 +15,12 @@ const Login = () => {
         password: password,
       })
       .then((result) => {
-        console.log("done");
+        if(result.data.role.role==="USER"){
+          
+          Navigate("/userDashboard")
+        }else{
+          Navigate("/adminDashboard")
+        }
       })
       .catch((err) => {
         console.log("failed");
