@@ -11,11 +11,12 @@ export const UserContext=createContext()
 
 const App = () => {
   const [token,setToken]=useState(localStorage.getItem("token")||"")
+  const [userId,setUserId]=useState(localStorage.getItem("userId")||"")
   const Navigate = useNavigate();
   return (
     <div className="App">
       
-      <UserContext.Provider value={{token,setToken}}>
+      <UserContext.Provider value={{token,setToken,userId,setUserId}}>
        <Navbar/>
       <Routes>
         <Route path="/" element={<Login />} />

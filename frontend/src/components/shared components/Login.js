@@ -18,7 +18,9 @@ const Login = () => {
       })
       .then((result) => {
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("userId",result.data.userId)
         user.setToken(result.data.token);
+        user.setUserId(result.data.userId)
 
         if (result.data.role.role === "USER") {
           Navigate("/userDashboard");

@@ -8,6 +8,8 @@ const Navbar=()=>{
     const goToLogOut=()=>{
       localStorage.removeItem("token") 
       user.setToken("")
+      localStorage.removeItem("userId") 
+      user.setUserId("")
       Navigate("/")
 
     }
