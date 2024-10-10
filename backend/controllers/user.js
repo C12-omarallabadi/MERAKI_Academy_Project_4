@@ -52,6 +52,7 @@ const login = async (req, res) => {
           massage: "Valid login credentials",
           token: token,
           role: user.role,
+          
         });
       } else {
         res.status(403).json({

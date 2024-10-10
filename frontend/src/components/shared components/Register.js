@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 const Register = () => {
+  const Navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
@@ -24,12 +26,12 @@ const Register = () => {
 
 
         console.log("done");
+        Navigate("/")
       })
       .catch((err) => {
         console.log("failed");
       });
   };
-  const Navigate = useNavigate();
   return (
     <>
       <h1>register</h1>
@@ -80,7 +82,7 @@ const Register = () => {
       <br />
       <Button
         onClick={() => {
-          Navigate("/login");
+          Navigate("/");
         }}
       >
         i already have an acount
