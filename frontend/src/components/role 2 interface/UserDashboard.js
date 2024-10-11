@@ -27,22 +27,24 @@ const UserDashboard = () => {
       });
   }, []);
   const allPosts = posts.map((elem, index) => {
-    return (
+    return (<div className="postContainer">
+      <div className="name"><h4>{elem.author.firstName} {elem.author.lastName}</h4></div> 
       <div className="post" key={index}>
         <h4>
           {" "}
-          {elem.author.firstName} {elem.author.lastName}
+         
         </h4>
         <p>{elem.post}</p>
-        <br></br>
-
-        <button
+       
+      </div>
+      <div className="postButtons">
+      <button
           onClick={() => {
 setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
         >
           comments
         </button>
-        <br></br>
+      
         {user.userId === elem.author._id ? (
           <button
             onClick={() => {
@@ -60,8 +62,7 @@ setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
           >
             delete
           </button>
-        ) : null}
-      </div>
+        ) : null}</div></div>
     );
   });
   return (
