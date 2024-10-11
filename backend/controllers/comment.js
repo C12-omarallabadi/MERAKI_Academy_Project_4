@@ -28,11 +28,9 @@ const getCommentsById=(req,res)=>{
   commentModel
   .find({ postId: req.params.id })
   .then((result) => {
-    if (result.length == 0) {
-      res.status(404).json("no comments");
-    } else {
+    
       res.status(200).json(result);
-    }
+    
   })
   .catch((err) => {
     res.status(500).json(err.message);

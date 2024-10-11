@@ -14,7 +14,7 @@ const App = () => {
   const [userId,setUserId]=useState(localStorage.getItem("userId")||"")
   const Navigate = useNavigate();
   return (
-    <div className="App">
+    <div  className="App">
       
       <UserContext.Provider value={{token,setToken,userId,setUserId}}>
        <Navbar/>

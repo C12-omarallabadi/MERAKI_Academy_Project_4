@@ -7,6 +7,9 @@ import { UserContext } from "../../App";
 import Comments from "./Comments";
 
 const UserDashboard = () => {
+
+  const [postId, setPostId] = useState("");
+
   const [isCommentsShown, setCommentsState] = useState(false);
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
@@ -35,7 +38,7 @@ const UserDashboard = () => {
 
         <button
           onClick={() => {
-setCommentsState(!isCommentsShown)          }}
+setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
         >
           comments
         </button>
@@ -62,9 +65,9 @@ setCommentsState(!isCommentsShown)          }}
     );
   });
   return (
-    <div className="postSection">
+    <div  className="postSection">
       {user.token ? allPosts : Navigate("/")}
-      {isCommentsShown ? <div><Comments/></div> : null}
+      {isCommentsShown ? <div><Comments postId={postId} isCommentsShown={isCommentsShown} setCommentsState={setCommentsState}/></div> : null}
     </div>
   );
 };

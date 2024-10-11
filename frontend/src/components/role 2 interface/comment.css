@@ -1,0 +1,52 @@
+.commentsContainer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+}
+
+.commentsBar {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-bottom: 2px solid black;
+}
+
+.barButton {
+  margin-right: auto;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.commentsWindow {
+  border-color: black;
+  border-style: double;
+  height: 500px;
+  background-color: white;
+  z-index: 10;
+  overflow: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.inputContainer {
+  display: flex;
+  width: 100%;
+}
+
+.commentArea {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+}
+
+.addCommentButton {
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 0;
+  height: 40px;
+  flex-shrink: 0;
+}
