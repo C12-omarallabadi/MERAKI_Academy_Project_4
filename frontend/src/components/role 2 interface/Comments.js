@@ -37,7 +37,7 @@ console.log(err)
     comments.length == 0
       ? false
       : comments.map((elem, index) => {
-          return <p key={index}>{elem.comment}</p>;
+          return <div className="comment" key={index}><h4 >{elem.commenter.firstName} {elem.commenter.lastName}</h4><p>{elem.comment}</p></div>;
         });
   return (
     <div className="commentsContainer">

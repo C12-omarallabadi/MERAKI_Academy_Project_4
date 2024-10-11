@@ -26,7 +26,7 @@ const deleteComment=(req,res)=>{
 }
 const getCommentsById=(req,res)=>{
   commentModel
-  .find({ postId: req.params.id })
+  .find({ postId: req.params.id }).populate("commenter")
   .then((result) => {
     
       res.status(200).json(result);
