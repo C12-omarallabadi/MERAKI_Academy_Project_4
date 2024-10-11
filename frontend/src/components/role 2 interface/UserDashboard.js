@@ -4,8 +4,10 @@ import axios from "axios";
 import "./user.css";
 import * as React from "react";
 import { UserContext } from "../../App";
+import Comments from "./Comments";
 
 const UserDashboard = () => {
+  const [isCommentsShown, setCommentsState] = useState(false);
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
 
@@ -30,8 +32,13 @@ const UserDashboard = () => {
         </h4>
         <p>{elem.post}</p>
         <br></br>
-        <input placeholder="add comment..."></input>
-        <button>add comment</button>
+
+        <button
+          onClick={() => {
+setCommentsState(!isCommentsShown)          }}
+        >
+          comments
+        </button>
         <br></br>
         {user.userId === elem.author._id ? (
           <button
@@ -55,7 +62,10 @@ const UserDashboard = () => {
     );
   });
   return (
-    <div className="postSection">{user.token ? allPosts : Navigate("/")} </div>
+    <div className="postSection">
+      {user.token ? allPosts : Navigate("/")}
+      {isCommentsShown ? <div><Comments/></div> : null}
+    </div>
   );
 };
 export default UserDashboard;

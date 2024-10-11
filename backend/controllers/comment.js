@@ -2,7 +2,7 @@ const commentModel=require("../models/commentSchema")
 const postModel=require("../models/postSchema")
 const createComment=(req,res)=>{
     const{comment}=req.body
-    const newComment=new commentModel({comment:comment,commenter:req.payload.userId})
+    const newComment=new commentModel({comment:comment,commenter:req.payload.userId,postId:req.params.id})
     newComment
     .save()
 postModel.findByIdAndUpdate(req.params.id,{$push:{comments:newComment}})
@@ -21,6 +21,10 @@ const deleteComment=(req,res)=>{
     .catch((err) => {
       res.status(404).json(err.message);
     });
+    
 
 }
-module.exports ={createComment,deleteComment}
+const getCommentsById=(req,res)=>{
+  console.log("hi")
+}
+module.exports ={createComment,deleteComment,getCommentsById}

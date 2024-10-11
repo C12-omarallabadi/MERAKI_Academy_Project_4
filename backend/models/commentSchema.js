@@ -7,6 +7,10 @@ const commentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-  },
+  },postId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Post",
+    required: true,
+  }
 });
 module.exports = mongoose.model("Comment", commentSchema);
