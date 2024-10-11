@@ -5,11 +5,23 @@ import { useContext } from "react";
 import "./comment.css";
 
 const Comments = ({ postId, isCommentsShown, setCommentsState }) => {
+    const [inputBar,setInputBar]=useState("")
   const [comments, setComments] = useState([]);
 
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
+///////////////////////////////////////////////////////////////
+const addComment=()=>{
+    axios
+    .post(`http://localhost:5000/comments/${postId}`,{comment:inputBar},{ headers })
+    .then((result)=>{
+setInputBar("")    })
+    .catch((err)=>{
+console.log(err)
+    })
 
+}
+///////////////////////////////////////////////////////////////
   useEffect(() => {
     axios
       .get(` http://localhost:5000/comments/${postId}`, { headers })
@@ -19,14 +31,14 @@ const Comments = ({ postId, isCommentsShown, setCommentsState }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [inputBar]);
+ 
   const postComments =
     comments.length == 0
       ? false
       : comments.map((elem, index) => {
           return <p key={index}>{elem.comment}</p>;
         });
-
   return (
     <div className="commentsContainer">
       <div className="commentsBar">
@@ -40,10 +52,10 @@ const Comments = ({ postId, isCommentsShown, setCommentsState }) => {
         </button>
         <h3>comments</h3>
       </div>
-      <div className="commentsWindow">{postComments}</div>
+      <div className="commentsWindow">{postComments?postComments:<h4>be the first commenter</h4>}</div>
       <div className="inputContainer">
-        <input className="commentArea" placeholder="add comment" />
-        <button className="addCommentButton">add comment</button>
+        <input value={inputBar} onChange={(e)=>{setInputBar(e.target.value)}} className="commentArea" placeholder="add comment" />
+        <button onClick={addComment} className="addCommentButton">add comment</button>
       </div>
     </div>
   );
