@@ -2,6 +2,7 @@ import React from "react"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../App"
+import { Link } from "react-router-dom"
 import "./navBar.css";
 const Navbar=()=>{
     const Navigate=useNavigate()
@@ -14,6 +15,6 @@ const Navbar=()=>{
       Navigate("/")
 
     }
-    return(user.token?<div className="navBar"><button onClick={goToLogOut}>logout</button><br></br></div>:null)
+    return(user.token?<div className="navBar"><Link to={"/myAcount"}>My Acount</Link> <Link onClick={()=>{Navigate(-1)}}>BACK</Link><Link to={"/"} onClick={goToLogOut}>logout</Link></div>:null)
 }
 export default Navbar

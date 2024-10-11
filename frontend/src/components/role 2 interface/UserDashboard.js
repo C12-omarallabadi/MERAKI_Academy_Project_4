@@ -27,7 +27,7 @@ const UserDashboard = () => {
       });
   }, []);
   const allPosts = posts.map((elem, index) => {
-    return (<div className="postContainer">
+    return (<div key={index} className="postContainer">
       <div className="name"><h4>{elem.author.firstName} {elem.author.lastName}</h4></div> 
       <div className="post" key={index}>
         <h4>

@@ -6,6 +6,7 @@ import Register from "./components/shared components/Register";
 import AdminDashboard from "./components/role 1 interface/AdminDashboard";
 import UserDashboard from "./components/role 2 interface/UserDashboard";
 import Navbar from "./components/shared components/Navbar" 
+import MyAcount from "./components/role 2 interface/MyAcount";
 export const UserContext=createContext()
 
 
@@ -23,6 +24,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/myAcount" element={<MyAcount />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />

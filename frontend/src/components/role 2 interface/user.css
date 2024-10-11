@@ -1,40 +1,35 @@
 .post {
-    display: block; 
-    text-align:start;
+  display: block;
+  text-align: start;
 
-   padding: 10px;
-    width: 400px;
-    max-height: 100px; 
-    background-color: rgb(194, 161, 226);
-    overflow-wrap: break-word; 
-    word-wrap: break-word; 
-    white-space: normal; 
-    box-sizing: border-box; 
-    overflow-y: auto; 
+  padding: 10px;
+  width: 300px;
+  max-height: 100px;
+  background-color: rgb(194, 161, 226);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-
-
-
-.postSection{
-    display: inline-flex;
-    flex-direction: column;
-gap: 10px;}
-.postButtons{
- 
-    display: flex;
-    justify-content: space-between;
+.postSection {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.postContainer{
-    border-color: gray;
-    border-top: 0px;
-    border-left:0px ;
-    border-right: 0px;
-    border-style: solid;
-
-
+.postButtons {
+  display: flex;
+  justify-content: space-between;
 }
-.name{
-    display: flex;
-    justify-items: flex-start;
+.postContainer {
+  border-color: gray;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+}
+.name {
+  display: flex;
+  justify-items: flex-start;
 }

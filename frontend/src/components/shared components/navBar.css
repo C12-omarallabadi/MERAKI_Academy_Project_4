@@ -1,11 +1,12 @@
-.navBar{
-    
-    position: fixed;
-    width: 100vw;
-    border-bottom: 1px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-style: solid;
-    background-color: gray;
+.navBar {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  width: 100vw;
+  border-bottom: 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  background-color: gray;
 }
