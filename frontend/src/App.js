@@ -18,6 +18,9 @@ const App = () => {
       
       <UserContext.Provider value={{token,setToken,userId,setUserId}}>
        <Navbar/>
+       <br></br>
+       <br></br>
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

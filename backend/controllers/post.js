@@ -81,6 +81,19 @@ const addRemoveReact = (req, res) => {
       res.status(404).json(err.message);
     });
 };
+const getPostById=(req,res)=>{
+  postModel
+  .findOne({ _id: req.params.id }).populate("author")
+  .then((result) => {
+
+      res.status(200).json(result);
+    
+  })
+  .catch((err) => {
+    res.status(404).json(err.message);
+  });
+
+}
 
 module.exports = {
   createPost,
@@ -89,4 +102,5 @@ module.exports = {
   deletePostById,
   updatePostById,
   addRemoveReact,
+  getPostById
 };

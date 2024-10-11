@@ -5,11 +5,27 @@ import { useContext } from "react";
 import "./comment.css";
 
 const Comments = ({ postId, isCommentsShown, setCommentsState }) => {
+    const [post,setPost]=useState("")
+    const [posterName,setPosterName]=useState("")
+
+
     const [inputBar,setInputBar]=useState("")
   const [comments, setComments] = useState([]);
 
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
+///////////////////////////////////////////////////////////////
+useEffect(()=>{
+    axios
+    .get(`http://localhost:5000/posts/${postId}`,{headers})
+    .then((result)=>{
+        setPosterName(result.data.author.firstName+" "+result.data.author.lastName )
+
+        setPost(result.data)
+
+    })
+    .catch((err)=>{console.log(err)})
+},[])
 ///////////////////////////////////////////////////////////////
 const addComment=()=>{
     axios
@@ -41,6 +57,7 @@ console.log(err)
         });
   return (
     <div className="commentsContainer">
+        <div className="Post"> <h4>{posterName}</h4><p>{post.post}</p></div>
       <div className="commentsBar">
         <button
           onClick={() => {
@@ -52,7 +69,7 @@ console.log(err)
         </button>
         <h3>comments</h3>
       </div>
-      <div className="commentsWindow">{postComments?postComments:<h4>be the first commenter</h4>}</div>
+      <div className="commentsWindow">{postComments?postComments:<h3>be the first commenter</h3>}</div>
       <div className="inputContainer">
         <input value={inputBar} onChange={(e)=>{setInputBar(e.target.value)}} className="commentArea" placeholder="add comment" />
         <button onClick={addComment} className="addCommentButton">add comment</button>
