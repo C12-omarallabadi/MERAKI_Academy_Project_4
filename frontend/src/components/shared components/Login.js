@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -12,12 +12,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   /////////////////////////////////////////////
-  user.setIsLoggedIn(false)
-  user.setUserId("")
-  user.setToken("")
-  localStorage.removeItem("token")
-  localStorage.removeItem("userId")
-  localStorage.removeItem("isLoggedIn")
+  useEffect(()=>{ user.setIsLoggedIn(false)
+    user.setUserId("")
+    user.setToken("")
+    localStorage.removeItem("token")
+    localStorage.removeItem("userId")
+    localStorage.removeItem("isLoggedIn")},[])
 ////////////////////////////////////////////////
   const goToLogin = () => {
     axios
