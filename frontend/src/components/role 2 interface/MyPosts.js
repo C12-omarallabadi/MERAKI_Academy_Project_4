@@ -28,7 +28,19 @@ setMyPosts(result.data)        })
             <h4>{elem.author.fullName}</h4>
             <div className="postContent"><p>{elem.post}</p></div>
         </div>
-        <button>delete</button>
+        <button   onClick={() => {
+              const id = elem._id;
+              axios
+                .delete(`http://localhost:5000/posts/${id}`, { headers })
+                .then((result) => {
+                  const newPosts = myPosts.filter((elem) => elem._id != id);
+                 setMyPosts(newPosts);
+                })
+                .catch((err) => {
+                 
+                  Navigate("/")
+                });
+            }}>delete</button>
         <button>comment</button>
         <button>update</button>
 
