@@ -33,3 +33,20 @@
   display: flex;
   justify-items: flex-start;
 }
+.checkBox{
+display: flex;
+flex-direction: column;
+justify-content: center;
+  position: fixed;
+  border-style: solid;
+  width: 400px;
+  height: 200px;
+background-color: grey; 
+  white-space: normal;
+  box-sizing: border-box;
+  left: 50%;
+    transform: translateX(-50%);
+
+
+}
+

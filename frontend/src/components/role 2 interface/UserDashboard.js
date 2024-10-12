@@ -7,6 +7,7 @@ import { UserContext } from "../../App";
 import Comments from "./Comments";
 
 const UserDashboard = () => {
+  const [isCkeckBoxShown, setIsCheckBox] = useState(false);
 
   const [postId, setPostId] = useState("");
 
@@ -23,54 +24,87 @@ const UserDashboard = () => {
         setPosts(result.data);
       })
       .catch((err) => {
-       
-        Navigate("/")
+        Navigate("/");
       });
   }, []);
   const allPosts = posts.map((elem, index) => {
-    return (<div key={index} className="postContainer">
-      <div className="name"><h4>{elem.author.firstName} {elem.author.lastName}</h4></div> 
-      <div className="post" key={index}>
-        <h4>
-          {" "}
-         
-        </h4>
-        <p>{elem.post}</p>
-       
-      </div>
-      <div className="postButtons">
-      <button
-          onClick={() => {
-setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
-        >
-          comments
-        </button>
-      
-        {user.userId === elem.author._id ? (
+    return (
+      <div key={index} className="postContainer">
+        <div className="name">
+          <h4>
+            {elem.author.firstName} {elem.author.lastName}
+          </h4>
+        </div>
+        <div className="post" key={index}>
+          <h4> </h4>
+          <p>{elem.post}</p>
+        </div>
+        <div className="postButtons">
           <button
             onClick={() => {
-              const id = elem._id;
-              axios
-                .delete(`http://localhost:5000/posts/${id}`, { headers })
-                .then((result) => {
-                  const newPosts = posts.filter((elem) => elem._id != id);
-                  setPosts(newPosts);
-                })
-                .catch((err) => {
-                 
-                  Navigate("/")
-                });
+              setCommentsState(!isCommentsShown);
+              setPostId(elem._id);
             }}
           >
-            delete
+            comments
           </button>
-        ) : null}</div></div>
+
+          {user.userId === elem.author._id ? (
+            <button
+              onClick={() => {
+                setIsCheckBox(true);
+                setPostId(elem._id);
+              }}
+            >
+              delete
+            </button>
+          ) : null}
+        </div>
+      </div>
     );
   });
   return (
-    <div  className="postSection">
-      {user.token ? allPosts : Navigate("/")}
-      {isCommentsShown ? <div><Comments postId={postId} isCommentsShown={isCommentsShown} setCommentsState={setCommentsState}/></div> : null}
+    <div>
+      <div className="postSection">
+        {user.token ? allPosts : Navigate("/")}
+        {isCommentsShown ? (
+          <div>
+            <Comments
+              postId={postId}
+              isCommentsShown={isCommentsShown}
+              setCommentsState={setCommentsState}
+            />
+          </div>
+        ) : null}
+      </div>
+      {isCkeckBoxShown ? (
+        <div className="checkBox">
+          <h4>are you realy want to delete this post</h4>
+          <button
+            onClick={() => {
+              axios
+                .delete(`http://localhost:5000/posts/${postId}`, { headers })
+                .then((result) => {
+                  const newPosts = posts.filter((elem) => elem._id != postId);
+                  setPosts(newPosts);
+                  setIsCheckBox(false);
+                })
+                .catch((err) => {
+                  Navigate("/");
+                });
+            }}
+          >
+            yes
+          </button>
+          <button
+            onClick={() => {
+              setIsCheckBox(false);
+            }}
+          >
+            no
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };
