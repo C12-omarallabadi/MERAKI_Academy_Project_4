@@ -13,7 +13,7 @@ const {
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 postRouter.get("/:id",authentication, getPostById);
-postRouter.post("/", authentication, authorization("CREATE_POST"), createPost);
+postRouter.post("/", authentication, createPost);
 postRouter.get("/",authentication, getAllPosts);
 postRouter.get("/myPosts", authentication, getMyPosts);
 postRouter.delete(

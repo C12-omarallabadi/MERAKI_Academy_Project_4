@@ -1,6 +1,6 @@
 const postModel = require("../models/postSchema");
 const createPost = (req, res) => {
-  const { post } = req.body;
+  const { post, author } = req.body;
   const newPost = new postModel({ post: post, author: req.payload.userId });
   newPost
     .save()
@@ -13,7 +13,8 @@ const createPost = (req, res) => {
 };
 const getAllPosts = (req, res) => {
   postModel
-    .find({}).populate("author")
+    .find({})
+    .populate("author")
     .then((result) => {
       if (result.length == 0) {
         res.status(404).json("no posts");
@@ -81,19 +82,17 @@ const addRemoveReact = (req, res) => {
       res.status(404).json(err.message);
     });
 };
-const getPostById=(req,res)=>{
+const getPostById = (req, res) => {
   postModel
-  .findOne({ _id: req.params.id }).populate("author")
-  .then((result) => {
-
+    .findOne({ _id: req.params.id })
+    .populate("author")
+    .then((result) => {
       res.status(200).json(result);
-    
-  })
-  .catch((err) => {
-    res.status(404).json(err.message);
-  });
-
-}
+    })
+    .catch((err) => {
+      res.status(404).json(err.message);
+    });
+};
 
 module.exports = {
   createPost,
@@ -102,5 +101,5 @@ module.exports = {
   deletePostById,
   updatePostById,
   addRemoveReact,
-  getPostById
+  getPostById,
 };

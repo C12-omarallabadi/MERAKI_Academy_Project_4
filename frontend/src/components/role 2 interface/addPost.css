@@ -1,0 +1,17 @@
+.addPost{
+    display: block;
+    border-color: black;
+    border-style: solid;
+    box-sizing: border-box;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vw;
+
+
+}
+.textArea{
+    height: 30vh;
+    width: 45vw;
+    resize: none;
+}

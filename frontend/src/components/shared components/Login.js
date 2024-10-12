@@ -12,7 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   /////////////////////////////////////////////
-  useEffect(()=>{ user.setIsLoggedIn(false)
+ useEffect(()=>{ user.setIsLoggedIn(false)
     user.setUserId("")
     user.setToken("")
     localStorage.removeItem("token")
@@ -26,6 +26,7 @@ const Login = () => {
         password: password,
       })
       .then((result) => {
+        
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("userId",result.data.userId)
         localStorage.setItem("isLoggedIn",true)

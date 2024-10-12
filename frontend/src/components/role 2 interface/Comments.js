@@ -20,7 +20,7 @@ useEffect(()=>{
     axios
     .get(`http://localhost:5000/posts/${postId}`,{headers})
     .then((result)=>{
-        setPosterName(result.data.author.firstName+" "+result.data.author.lastName )
+        setPosterName(result.data.author.fullName )
 
         setPost(result.data)
 
@@ -58,7 +58,7 @@ setInputBar("")    })
     comments.length == 0
       ? false
       : comments.map((elem, index) => {
-          return <div className="comment" key={index}><h4 >{elem.commenter.firstName} {elem.commenter.lastName}</h4><p>{elem.comment}</p></div>;
+          return <div className="comment" key={index}><h4 >{elem.commenter.fullName}</h4><p>{elem.comment}</p></div>;
         });
   return (
     <div className="commentsContainer">
