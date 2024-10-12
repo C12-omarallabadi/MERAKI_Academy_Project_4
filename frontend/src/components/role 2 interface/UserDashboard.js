@@ -23,11 +23,7 @@ const UserDashboard = () => {
         setPosts(result.data);
       })
       .catch((err) => {
-        user.setIsLoggedIn(false)
-        localStorage.removeItem("token") 
-        user.setToken("")
-        localStorage.removeItem("userId") 
-        user.setUserId("")
+       
         Navigate("/")
       });
   }, []);
@@ -61,11 +57,7 @@ setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
                   setPosts(newPosts);
                 })
                 .catch((err) => {
-                  user.setIsLoggedIn(false)
-                  localStorage.removeItem("token") 
-                  user.setToken("")
-                  localStorage.removeItem("userId") 
-                  user.setUserId("")
+                 
                   Navigate("/")
                 });
             }}

@@ -7,15 +7,7 @@ import "./navBar.css";
 const Navbar=()=>{
     const Navigate=useNavigate()
     const user=useContext(UserContext)
-    const goToLogOut=()=>{
-    user.setIsLoggedIn(false)
-      localStorage.removeItem("token") 
-      user.setToken("")
-      localStorage.removeItem("userId") 
-      user.setUserId("")
-      Navigate("/")
-
-    }
-    return(user.isLoggedIn?<div className="navBar"><Link to={"/myAcount"}>My Acount</Link> <Link onClick={()=>{Navigate(-1)}}>BACK</Link><Link to={"/"} onClick={goToLogOut}>logout</Link></div>:null)
+   
+    return(user.isLoggedIn?<div className="navBar"><Link to={"/myAcount"}>My Acount</Link> <Link onClick={()=>{Navigate(-1)}}>BACK</Link><Link to={"/"} >logout</Link></div>:null)
 }
 export default Navbar

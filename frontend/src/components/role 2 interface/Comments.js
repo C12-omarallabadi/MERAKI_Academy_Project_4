@@ -25,11 +25,8 @@ useEffect(()=>{
         setPost(result.data)
 
     })
-    .catch((err)=>{ user.setIsLoggedIn(false)
-      localStorage.removeItem("token") 
-      user.setToken("")
-      localStorage.removeItem("userId") 
-      user.setUserId("")
+    .catch((err)=>{
+     
       Navigate("/")})
 },[])
 ///////////////////////////////////////////////////////////////
@@ -39,11 +36,7 @@ const addComment=()=>{
     .then((result)=>{
 setInputBar("")    })
     .catch((err)=>{
-      user.setIsLoggedIn(false)
-      localStorage.removeItem("token") 
-      user.setToken("")
-      localStorage.removeItem("userId") 
-      user.setUserId("")
+     
       Navigate("/")
     })
 
@@ -56,11 +49,7 @@ setInputBar("")    })
         setComments(result.data);
       })
       .catch((err) => {
-        user.setIsLoggedIn(false)
-      localStorage.removeItem("token") 
-      user.setToken("")
-      localStorage.removeItem("userId") 
-      user.setUserId("")
+     
       Navigate("/")
       });
   }, [inputBar]);
