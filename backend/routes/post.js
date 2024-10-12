@@ -12,10 +12,11 @@ const {
 
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
+postRouter.get("/myPosts", authentication, getMyPosts);
+
 postRouter.get("/:id",authentication, getPostById);
 postRouter.post("/", authentication, createPost);
 postRouter.get("/",authentication, getAllPosts);
-postRouter.get("/myPosts", authentication, getMyPosts);
 postRouter.delete(
   "/:id",
   authentication,

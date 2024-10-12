@@ -28,7 +28,7 @@ const getAllPosts = (req, res) => {
 };
 const getMyPosts = (req, res) => {
   postModel
-    .find({ author: req.payload.userId })
+    .find({ author: req.payload.userId }).populate("author")
     .then((result) => {
       if (result.length == 0) {
         res.status(404).json("no posts");

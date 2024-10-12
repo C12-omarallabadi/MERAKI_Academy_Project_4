@@ -1,0 +1,38 @@
+.myPost{
+
+    text-align: start;
+    padding: 10px;
+
+}
+.myPostContainer{
+    display: block;
+    border-color: black;
+ 
+}
+.allPostsContainer{
+    display: block;
+    width: 350px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-height: 500px;
+
+
+
+}
+.postContent{
+    display: block;
+    overflow-wrap: break-word;
+    background-color: rgb(194, 161, 226);
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-height: 100px;
+    min-height: 40px;
+
+
+
+    
+
+}

@@ -6,7 +6,7 @@ import { UserContext } from "../../App"
 import { Link } from "react-router-dom"
 import "./addPost.css";
 
-const Post =({userInfo})=>{
+const Post =({userInfo,setIsMyPostsShown,setIsTextArea})=>{
     
    /////////////////////////////////////////
     const[postArea,setPostArea]=useState("")
@@ -21,6 +21,8 @@ const Post =({userInfo})=>{
     post("http://localhost:5000/posts",{post:postArea},{headers})
     .then((result)=>{
         console.log("done")
+        setIsTextArea(false)
+        setIsMyPostsShown(true)
     })
     .catch((err)=>{
         console.log(err)

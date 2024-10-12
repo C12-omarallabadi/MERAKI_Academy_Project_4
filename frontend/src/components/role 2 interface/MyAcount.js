@@ -6,6 +6,7 @@ import { UserContext } from "../../App"
 import { Link } from "react-router-dom"
 import Post from "./Post"
 import MyPosts from "./MyPosts"
+import Comments from "./Comments"
 
 
 const MyAcount =()=>{
@@ -16,6 +17,7 @@ const MyAcount =()=>{
     const[myPosts,setMyPosts]=useState([])
     const [isTextAreaShown,setIsTextArea]=useState(false)
     const [isMyPostsShown,setIsMyPostsShown]=useState(false)
+    
 
 
 /////////////////////////////////////////////////////////////
@@ -44,7 +46,7 @@ setUserInfo(result.data)
         <button onClick={()=>{setIsMyPostsShown(!isMyPostsShown);setIsTextArea(false)}}>My Posts</button>
 
         
-         {isTextAreaShown?<Post userInfo={userInfo}/>:null}
+         {isTextAreaShown?<Post userInfo={userInfo} setIsMyPostsShown={setIsMyPostsShown} setIsTextArea={setIsTextArea}/>:null}
          {isMyPostsShown?<MyPosts/>:null}
         </div>
     )
