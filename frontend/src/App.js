@@ -11,13 +11,14 @@ export const UserContext=createContext()
 
 
 const App = () => {
+  const [isLoggedIn,setIsLoggedIn]=useState(false)
   const [token,setToken]=useState(localStorage.getItem("token")||"")
   const [userId,setUserId]=useState(localStorage.getItem("userId")||"")
   const Navigate = useNavigate();
   return (
     <div  className="App">
       
-      <UserContext.Provider value={{token,setToken,userId,setUserId}}>
+      <UserContext.Provider value={{token,setToken,userId,setUserId,isLoggedIn,setIsLoggedIn}}>
        <Navbar/>
        <br></br>
        <br></br>

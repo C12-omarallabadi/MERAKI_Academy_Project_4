@@ -5,7 +5,7 @@ import { UserContext } from "../../App"
 import { Link } from "react-router-dom"
 const MyAcount =()=>{
     const Navigate=useNavigate()
-    const user=useContext(useContext)
+    const user=useContext(UserContext)
     return (
         <h1>my account</h1>
     )

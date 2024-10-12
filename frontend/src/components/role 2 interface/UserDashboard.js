@@ -23,7 +23,12 @@ const UserDashboard = () => {
         setPosts(result.data);
       })
       .catch((err) => {
-        console.log(err.status);
+        user.setIsLoggedIn(false)
+        localStorage.removeItem("token") 
+        user.setToken("")
+        localStorage.removeItem("userId") 
+        user.setUserId("")
+        Navigate("/")
       });
   }, []);
   const allPosts = posts.map((elem, index) => {
@@ -56,7 +61,12 @@ setCommentsState(!isCommentsShown); setPostId(elem._id)         }}
                   setPosts(newPosts);
                 })
                 .catch((err) => {
-                  console.log(err);
+                  user.setIsLoggedIn(false)
+                  localStorage.removeItem("token") 
+                  user.setToken("")
+                  localStorage.removeItem("userId") 
+                  user.setUserId("")
+                  Navigate("/")
                 });
             }}
           >

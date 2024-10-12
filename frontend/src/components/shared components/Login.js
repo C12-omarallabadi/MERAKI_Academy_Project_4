@@ -21,6 +21,7 @@ const Login = () => {
         localStorage.setItem("userId",result.data.userId)
         user.setToken(result.data.token);
         user.setUserId(result.data.userId)
+        user.setIsLoggedIn(true)
 
         if (result.data.role.role === "USER") {
           Navigate("/userDashboard");

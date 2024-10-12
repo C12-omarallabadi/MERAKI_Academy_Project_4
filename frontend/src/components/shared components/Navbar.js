@@ -8,6 +8,7 @@ const Navbar=()=>{
     const Navigate=useNavigate()
     const user=useContext(UserContext)
     const goToLogOut=()=>{
+    user.setIsLoggedIn(false)
       localStorage.removeItem("token") 
       user.setToken("")
       localStorage.removeItem("userId") 
@@ -15,6 +16,6 @@ const Navbar=()=>{
       Navigate("/")
 
     }
-    return(user.token?<div className="navBar"><Link to={"/myAcount"}>My Acount</Link> <Link onClick={()=>{Navigate(-1)}}>BACK</Link><Link to={"/"} onClick={goToLogOut}>logout</Link></div>:null)
+    return(user.isLoggedIn?<div className="navBar"><Link to={"/myAcount"}>My Acount</Link> <Link onClick={()=>{Navigate(-1)}}>BACK</Link><Link to={"/"} onClick={goToLogOut}>logout</Link></div>:null)
 }
 export default Navbar

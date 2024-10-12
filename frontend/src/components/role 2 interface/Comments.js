@@ -3,8 +3,9 @@ import axios from "axios";
 import { UserContext } from "../../App";
 import { useContext } from "react";
 import "./comment.css";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const Comments = ({ postId, isCommentsShown, setCommentsState }) => {
+  const Navigate=useNavigate()
     const [post,setPost]=useState("")
     const [posterName,setPosterName]=useState("")
 
@@ -24,7 +25,12 @@ useEffect(()=>{
         setPost(result.data)
 
     })
-    .catch((err)=>{console.log(err)})
+    .catch((err)=>{ user.setIsLoggedIn(false)
+      localStorage.removeItem("token") 
+      user.setToken("")
+      localStorage.removeItem("userId") 
+      user.setUserId("")
+      Navigate("/")})
 },[])
 ///////////////////////////////////////////////////////////////
 const addComment=()=>{
@@ -33,7 +39,12 @@ const addComment=()=>{
     .then((result)=>{
 setInputBar("")    })
     .catch((err)=>{
-console.log(err)
+      user.setIsLoggedIn(false)
+      localStorage.removeItem("token") 
+      user.setToken("")
+      localStorage.removeItem("userId") 
+      user.setUserId("")
+      Navigate("/")
     })
 
 }
@@ -45,7 +56,12 @@ console.log(err)
         setComments(result.data);
       })
       .catch((err) => {
-        console.log(err);
+        user.setIsLoggedIn(false)
+      localStorage.removeItem("token") 
+      user.setToken("")
+      localStorage.removeItem("userId") 
+      user.setUserId("")
+      Navigate("/")
       });
   }, [inputBar]);
  
