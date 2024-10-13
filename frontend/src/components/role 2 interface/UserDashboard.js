@@ -7,6 +7,14 @@ import { UserContext } from "../../App";
 import Comments from "./Comments";
 
 const UserDashboard = () => {
+  const [UpdateBoxShown, setUpdateBox] = useState(false);
+  const [textOfUpdate, setTextOfUpdate] = useState("");
+  const [afterUpdate, setAfterUpdate] = useState("");
+
+
+
+
+
   const [isCkeckBoxShown, setIsCheckBox] = useState(false);
 
   const [postId, setPostId] = useState("");
@@ -27,12 +35,23 @@ const UserDashboard = () => {
       .catch((err) => {
         Navigate("/");
       });
-  }, []);
+  }, [UpdateBoxShown]);
   ////////////////////////////////////
   useEffect(()=>{        setReversedPosts(posts.reverse())
   },[posts])
 
   ////////////////////////////////////////
+  const updatePost=()=>{
+    axios
+    .put(`http://localhost:5000/posts/${postId}`,{post:afterUpdate},{headers})
+    .then((result)=>{
+      setUpdateBox(false)
+    })
+    .catch((err)=>{console.log(err)})
+  
+  }
+
+  //////////////////////////////////////////
   const allPosts = reversedPosts.map((elem, index) => {
     return (
       <div key={index} className="postContainer">
@@ -63,6 +82,18 @@ const UserDashboard = () => {
               }}
             >
               delete
+            </button>
+          ) : null}
+          {user.userId === elem.author._id ? (
+            <button
+              onClick={() => {
+                setUpdateBox(true)
+                setTextOfUpdate(elem.post)
+                
+                setPostId(elem._id);
+              }}
+            >
+              update
             </button>
           ) : null}
         </div>
@@ -111,6 +142,15 @@ const UserDashboard = () => {
           </button></div>
         </div>
       ) : null}
+
+
+{UpdateBoxShown?<div className="updateBox">
+<textarea onChange={(e)=>{setAfterUpdate(e.target.value)}} defaultValue={textOfUpdate}></textarea>
+<button onClick={updatePost}>update now</button>
+<button onClick={()=>{setUpdateBox(false)}}>back</button>
+      </div>:null}
+
+
     </div>
   );
 };
