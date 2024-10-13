@@ -19,7 +19,6 @@ const UserDashboard = () => {
   const [posts, setPosts] = useState([]);
   const [reversedPosts, setReversedPosts] = useState([]);
 console.log(posts)
-console.log(reversedPosts)
   useEffect(() => {
     axios
       .get("http://localhost:5000/posts", { headers })

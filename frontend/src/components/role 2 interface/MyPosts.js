@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState([]);
+  const [reversedMyPosts, setReversedMyPosts] = useState([]);
+
   const [myPostId, setMyPostId] = useState("");
   const [isBoxShown, setIsBoxShown] = useState("");
   const Navigate = useNavigate();
@@ -26,7 +28,11 @@ const MyPosts = () => {
       });
   }, []);
   //////////////////////////////////////////////////////////////
-  const showMyPosts = myPosts.map((elem, index) => {
+  useEffect(()=>{
+    setReversedMyPosts(myPosts.reverse())
+  },[myPosts])
+  /////////////////////////////////////////////////////////////
+  const showMyPosts = reversedMyPosts.map((elem, index) => {
     return (
       <div className="myPostContainer" key={index}>
         <div className="myPost">
@@ -61,10 +67,10 @@ const MyPosts = () => {
               axios
                 .delete(`http://localhost:5000/posts/${myPostId}`, { headers })
                 .then((result) => {
-                  const newPosts = myPosts.filter(
+                  const newPosts = reversedMyPosts.filter(
                     (elem) => elem._id != myPostId
                   );
-                  setMyPosts(newPosts);
+                  setReversedMyPosts(newPosts);
                   setIsBoxShown(false);
                 })
                 .catch((err) => {
