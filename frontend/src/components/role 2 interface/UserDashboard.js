@@ -17,17 +17,25 @@ const UserDashboard = () => {
 
   const Navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [reversedPosts, setReversedPosts] = useState([]);
+console.log(posts)
+console.log(reversedPosts)
   useEffect(() => {
     axios
       .get("http://localhost:5000/posts", { headers })
       .then((result) => {
-        setPosts(result.data);
+        setPosts((result.data))
       })
       .catch((err) => {
         Navigate("/");
       });
   }, []);
-  const allPosts = posts.map((elem, index) => {
+  ////////////////////////////////////
+  useEffect(()=>{        setReversedPosts(posts.reverse())
+  },[posts])
+
+  ////////////////////////////////////////
+  const allPosts = reversedPosts.map((elem, index) => {
     return (
       <div key={index} className="postContainer">
         <div className="name">
@@ -85,8 +93,8 @@ const UserDashboard = () => {
               axios
                 .delete(`http://localhost:5000/posts/${postId}`, { headers })
                 .then((result) => {
-                  const newPosts = posts.filter((elem) => elem._id != postId);
-                  setPosts(newPosts);
+                  const newPosts = reversedPosts.filter((elem) => elem._id != postId);
+                  setReversedPosts(newPosts);
                   setIsCheckBox(false);
                 })
                 .catch((err) => {

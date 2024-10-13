@@ -15,9 +15,9 @@ const Login = () => {
  useEffect(()=>{ user.setIsLoggedIn(false)
     user.setUserId("")
     user.setToken("")
-    localStorage.removeItem("token")
-    localStorage.removeItem("userId")
-    localStorage.removeItem("isLoggedIn")},[])
+    sessionStorage.removeItem("token")
+    sessionStorage.removeItem("userId")
+    sessionStorage.removeItem("isLoggedIn")},[])
 ////////////////////////////////////////////////
   const goToLogin = () => {
     axios
@@ -27,9 +27,9 @@ const Login = () => {
       })
       .then((result) => {
         
-        localStorage.setItem("token", result.data.token);
-        localStorage.setItem("userId",result.data.userId)
-        localStorage.setItem("isLoggedIn",true)
+        sessionStorage.setItem("token", result.data.token);
+        sessionStorage.setItem("userId",result.data.userId)
+        sessionStorage.setItem("isLoggedIn",true)
         user.setToken(result.data.token);
         user.setUserId(result.data.userId)
         user.setIsLoggedIn(true)

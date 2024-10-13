@@ -11,10 +11,10 @@ export const UserContext = createContext();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") || false
+    sessionStorage.getItem("isLoggedIn") || false
   );
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
+  const [token, setToken] = useState(sessionStorage.getItem("token") || "");
+  const [userId, setUserId] = useState(sessionStorage.getItem("userId") || "");
   const Navigate = useNavigate();
   return (
     <div className="App">
