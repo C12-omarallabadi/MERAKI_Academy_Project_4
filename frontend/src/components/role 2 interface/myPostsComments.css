@@ -1,0 +1,8 @@
+.myPostsCommentContainer{
+    border-style: double;
+    background-color: white;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%)
+
+}

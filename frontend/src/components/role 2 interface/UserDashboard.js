@@ -18,7 +18,6 @@ const UserDashboard = () => {
   const Navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [reversedPosts, setReversedPosts] = useState([]);
-console.log(posts)
   useEffect(() => {
     axios
       .get("http://localhost:5000/posts", { headers })
@@ -86,8 +85,8 @@ console.log(posts)
       </div>
       {isCkeckBoxShown ? (
         <div className="checkBox">
-          <h4>are you realy want to delete this post</h4>
-          <button
+          <h4>are you realy want to delete this post?</h4>
+        <div>  <button
             onClick={() => {
               axios
                 .delete(`http://localhost:5000/posts/${postId}`, { headers })
@@ -109,7 +108,7 @@ console.log(posts)
             }}
           >
             no
-          </button>
+          </button></div>
         </div>
       ) : null}
     </div>

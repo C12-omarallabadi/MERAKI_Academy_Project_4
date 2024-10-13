@@ -6,10 +6,12 @@ import { UserContext } from "../../App";
 import "./myPosts.css";
 
 import { Link } from "react-router-dom";
+import MyPostsComments from "./MyPostsComments";
 
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [reversedMyPosts, setReversedMyPosts] = useState([]);
+  const [isMyPostsCommentsShown, setIsMyPostsCommentsShown] = useState(false);
 
   const [myPostId, setMyPostId] = useState("");
   const [isBoxShown, setIsBoxShown] = useState("");
@@ -28,9 +30,9 @@ const MyPosts = () => {
       });
   }, []);
   //////////////////////////////////////////////////////////////
-  useEffect(()=>{
-    setReversedMyPosts(myPosts.reverse())
-  },[myPosts])
+  useEffect(() => {
+    setReversedMyPosts(myPosts.reverse());
+  }, [myPosts]);
   /////////////////////////////////////////////////////////////
   const showMyPosts = reversedMyPosts.map((elem, index) => {
     return (
@@ -49,7 +51,14 @@ const MyPosts = () => {
         >
           delete
         </button>
-        <button>comment</button>
+        <button
+          onClick={() => {
+            setMyPostId(elem._id)
+            setIsMyPostsCommentsShown(true);
+          }}
+        >
+          comment
+        </button>
         <button>update</button>
       </div>
     );
@@ -57,37 +66,51 @@ const MyPosts = () => {
   //////////////////////////////////////////////////////////////
 
   return (
-    <div className="allPostsContainer">
-      {showMyPosts}
+    <div>
+      <div className="allPostsContainer">{showMyPosts}</div>
+
       {isBoxShown ? (
-        <div className="checkBox">
-          <h4>are you realy want to delete this post</h4>
-          <button
-            onClick={() => {
-              axios
-                .delete(`http://localhost:5000/posts/${myPostId}`, { headers })
-                .then((result) => {
-                  const newPosts = reversedMyPosts.filter(
-                    (elem) => elem._id != myPostId
-                  );
-                  setReversedMyPosts(newPosts);
-                  setIsBoxShown(false);
-                })
-                .catch((err) => {
-                  Navigate("/");
-                });
-            }}
-          >
-            yes
-          </button>
-          <button
-            onClick={() => {
-              setIsBoxShown(false);
-            }}
-          >
-            no
-          </button>
+        <div className="mycheckBox">
+          <h4>are you realy want to delete this post?</h4>
+          <div>
+            {" "}
+            <button
+              onClick={() => {
+                axios
+                  .delete(`http://localhost:5000/posts/${myPostId}`, {
+                    headers,
+                  })
+                  .then((result) => {
+                    const newPosts = reversedMyPosts.filter(
+                      (elem) => elem._id != myPostId
+                    );
+                    setReversedMyPosts(newPosts);
+                    setIsBoxShown(false);
+                  })
+                  .catch((err) => {
+                    Navigate("/");
+                  });
+              }}
+            >
+              yes
+            </button>
+            <button
+              onClick={() => {
+                setIsBoxShown(false);
+              }}
+            >
+              no
+            </button>
+          </div>
         </div>
+      ) : null}
+      {isMyPostsCommentsShown ? (
+        <MyPostsComments
+          isMyPostsCommentsShown={isMyPostsCommentsShown}
+          setIsMyPostsCommentsShown={setIsMyPostsCommentsShown}
+          myPostId={myPostId}
+          setMyPostId={setMyPostId}
+        />
       ) : null}
     </div>
   );
