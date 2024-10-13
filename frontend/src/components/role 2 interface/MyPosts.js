@@ -12,9 +12,11 @@ const MyPosts = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [reversedMyPosts, setReversedMyPosts] = useState([]);
   const [isMyPostsCommentsShown, setIsMyPostsCommentsShown] = useState(false);
-
+const[newPost,setNewPost]=useState("")
   const [myPostId, setMyPostId] = useState("");
   const [isBoxShown, setIsBoxShown] = useState("");
+  const [isUpdatePostShown,setIsUpdatePostShown]=useState(false)
+  const [updateBoxText,setUpdateBoxText]=useState({})
   const Navigate = useNavigate();
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
@@ -28,11 +30,14 @@ const MyPosts = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isUpdatePostShown]);
   //////////////////////////////////////////////////////////////
   useEffect(() => {
     setReversedMyPosts(myPosts.reverse());
   }, [myPosts]);
+  /////////////////////////////////////////////////////////////
+ 
+//////////////////////
   /////////////////////////////////////////////////////////////
   const showMyPosts = reversedMyPosts.map((elem, index) => {
     return (
@@ -59,11 +64,24 @@ const MyPosts = () => {
         >
           comment
         </button>
-        <button>update</button>
+        <button onClick={()=>{ setMyPostId(elem._id)
+        setUpdateBoxText(elem.post)
+;setIsUpdatePostShown(true)}}>update</button>
       </div>
     );
   });
   //////////////////////////////////////////////////////////////
+const updatePost=()=>{
+  axios
+  .put(`http://localhost:5000/posts/${myPostId}`,{post:newPost},{headers})
+  .then((result)=>{
+    setIsUpdatePostShown(false)
+  })
+  .catch((err)=>{console.log(err)})
+
+}
+
+  ////////////////////////////////////////////////////////////////
 
   return (
     <div>
@@ -112,6 +130,11 @@ const MyPosts = () => {
           setMyPostId={setMyPostId}
         />
       ) : null}
+      {isUpdatePostShown?<div className="updateBox">
+<textarea onChange={(e)=>{setNewPost(e.target.value)}} defaultValue={updateBoxText}></textarea>
+<button onClick={updatePost}>update now</button>
+<button onClick={()=>{setIsUpdatePostShown(false)}}>back</button>
+      </div>:null}
     </div>
   );
 };

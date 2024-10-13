@@ -31,7 +31,7 @@ const Post =({userInfo,setIsMyPostsShown,setIsTextArea})=>{
  ////////////////////////////////////////////////////////////////
     return (<div  className="addPost"><div>
         <h4>{userInfo.fullName}</h4>
-<textarea onChange={(e)=>{setPostArea(e.target.value)}} className="textArea" placeholder="What is in your mind ?"></textarea>
+<textarea onChange={(e)=>{setPostArea(e.target.value)}} className="textArea" placeholder="What is on your mind ?"></textarea>
         </div>
         <button onClick={createNewPost}>Create</button>
         </div>
