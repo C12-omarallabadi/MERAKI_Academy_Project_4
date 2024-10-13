@@ -3,20 +3,27 @@
   text-align: start;
 
   padding: 10px;
-  width: 300px;
+  width: 275px;
   max-height: 100px;
-  background-color: rgb(194, 161, 226);
+  background-color: rgb(212, 208, 208);
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
   box-sizing: border-box;
   overflow-y: auto;
+
 }
 
 .postSection {
-  display: inline-flex;
-  flex-direction: column;
+  display: block;
+  top:15%;
+  position: fixed;
+  width: 300px;
   gap: 10px;
+  left: 50%;
+  max-height: 400px;
+  transform: translateX(-50%);
+  overflow-y: auto;
 }
 .postButtons {
   display: flex;
@@ -24,9 +31,10 @@
 }
 .postContainer {
   border-color: gray;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  
+ 
   border-style: solid;
 }
 .name {
@@ -48,6 +56,18 @@ background-color: grey;
   left: 50%;
     transform: translateX(-50%);
 
+
+}
+button{
+border: 0px;
+border-radius: 5px;
+background-color: rgb(152, 183, 230);
+}
+.nameBar{
+  border-radius: 5px;
+
+  background-color: rgb(152, 183, 230);
+  padding: 2px;
 
 }
 

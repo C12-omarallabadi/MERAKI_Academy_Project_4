@@ -132,8 +132,8 @@ const updatePost=()=>{
       ) : null}
       {isUpdatePostShown?<div className="updateBox">
 <textarea onChange={(e)=>{setNewPost(e.target.value)}} defaultValue={updateBoxText}></textarea>
-<button onClick={updatePost}>update now</button>
-<button onClick={()=>{setIsUpdatePostShown(false)}}>back</button>
+<div><button onClick={updatePost}>update now</button>
+<button onClick={()=>{setIsUpdatePostShown(false)}}>back</button></div>
       </div>:null}
     </div>
   );

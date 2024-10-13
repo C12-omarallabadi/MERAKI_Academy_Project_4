@@ -56,9 +56,9 @@ const UserDashboard = () => {
     return (
       <div key={index} className="postContainer">
         <div className="name">
-          <h4>
-            {elem.author.firstName} {elem.author.lastName}
-          </h4>
+         <div className="nameBar"> <h4>
+            {elem.author.fullName}
+          </h4></div>
         </div>
         <div className="post" key={index}>
           <h4> </h4>
@@ -104,15 +104,7 @@ const UserDashboard = () => {
     <div>
       <div className="postSection">
         {user.token ? allPosts : Navigate("/")}
-        {isCommentsShown ? (
-          <div>
-            <Comments
-              postId={postId}
-              isCommentsShown={isCommentsShown}
-              setCommentsState={setCommentsState}
-            />
-          </div>
-        ) : null}
+       
       </div>
       {isCkeckBoxShown ? (
         <div className="checkBox">
@@ -146,11 +138,19 @@ const UserDashboard = () => {
 
 {UpdateBoxShown?<div className="updateBox">
 <textarea onChange={(e)=>{setAfterUpdate(e.target.value)}} defaultValue={textOfUpdate}></textarea>
-<button onClick={updatePost}>update now</button>
-<button onClick={()=>{setUpdateBox(false)}}>back</button>
+<div><button onClick={updatePost}>update now</button>
+<button onClick={()=>{setUpdateBox(false)}}>back</button></div>
       </div>:null}
 
-
+      {isCommentsShown ? (
+          <div>
+            <Comments
+              postId={postId}
+              isCommentsShown={isCommentsShown}
+              setCommentsState={setCommentsState}
+            />
+          </div>
+        ) : null}
     </div>
   );
 };

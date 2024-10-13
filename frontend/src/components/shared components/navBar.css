@@ -1,12 +1,18 @@
 .navBar {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   position: fixed;
   width: 100vw;
-  border-bottom: 1px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  border-style: solid;
-  background-color: gray;
+  height: 7vh;
+  padding: 1%;
+  background-color: rgb(89, 145, 228);
+}
+.search{
+  border-radius: 10px;
+  width: 50%;
+  height: 6vh;
+}
+.searchBox{
+  
 }

@@ -1,11 +1,10 @@
 .commentsContainer {
   position: fixed;
-  top: 30px;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 300px;
+  width: 350px;
 }
-
 .commentsBar {
   display: flex;
   align-items: center;
@@ -56,7 +55,7 @@
   align-items: start;
   padding: 10px;
   gap: 10px;
-  background-color: rgb(167, 141, 192);
+  background-color: rgb(152, 183, 230);
   margin-bottom: 10px;
   border-radius: 15px;
 }
@@ -65,9 +64,9 @@
   text-align: start;
 
   padding: 10px;
-  width: 300px;
+  width: 350px;
   max-height: 100px;
-  background-color: rgb(194, 161, 226);
+  background-color: rgb(152, 183, 230);
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
