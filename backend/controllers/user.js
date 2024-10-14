@@ -7,7 +7,7 @@ const register = (req, res) => {
   const newUser = new userModel({
     firstName,
     lastName,
-    fullName:firstName+" "+lastName,
+    fullName:(firstName+" "+lastName).toLocaleLowerCase(),
     age,
     email,
     password,

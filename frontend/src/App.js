@@ -7,6 +7,7 @@ import AdminDashboard from "./components/role 1 interface/AdminDashboard";
 import UserDashboard from "./components/role 2 interface/UserDashboard";
 import Navbar from "./components/shared components/Navbar";
 import MyAcount from "./components/role 2 interface/MyAcount";
+import WebsiteUser from "./components/role 2 interface/WebsiteUser";
 export const UserContext = createContext();
 
 const App = () => {
@@ -26,6 +27,8 @@ const App = () => {
           setUserId,
           isLoggedIn,
           setIsLoggedIn,
+      
+          
         }}
       >
         <Navbar />
@@ -38,6 +41,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/userDashboard" element={<UserDashboard />} />
           <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/profile/:id" element={<WebsiteUser/>}/>
         </Routes>
       </UserContext.Provider>
     </div>

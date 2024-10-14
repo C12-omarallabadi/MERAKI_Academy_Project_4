@@ -27,3 +27,10 @@
 
   
 }
+.searchResult{
+  display: flex;
+  background-color: gray;
+  margin-bottom: 2vh;
+  border-style: double;
+  
+}

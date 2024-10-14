@@ -31,16 +31,15 @@ console.log(err)
 
  ///////////////////////////////////////////////////////////////////////////////////// 
 const allUsers=users.map((elem,index)=>{
-  return(<div key={index}>{elem.fullName.includes(inputValue)?<h4>{elem.fullName}</h4>:null}</div>)
+  return(<div onClick={()=>{setInputValue("");setIsSearchBoxShown(false);Navigate(`/profile/${elem._id}`)}}   key={index}>{elem.fullName.includes(inputValue.toLowerCase())?<div className="searchResult"><h4>{elem.fullName}</h4></div>:null}</div>)
 })
-
  //////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div>
       {user.isLoggedIn ? (
         <div className="navBar">
-          <Link className="link" to={"/myAcount"}>
+          <Link onClick={()=>{setIsSearchBoxShown(false)}} className="link" to={"/myAcount"}>
             My Acount
           </Link>
           <input
@@ -55,12 +54,13 @@ const allUsers=users.map((elem,index)=>{
           <Link
             className="link"
             onClick={() => {
+              setIsSearchBoxShown(false)
               Navigate(-1);
             }}
           >
             BACK
           </Link>
-          <Link className="link" to={"/"}>
+          <Link onClick={()=>{setIsSearchBoxShown(false)}} className="link" to={"/"}>
             logout
           </Link>
         </div>
