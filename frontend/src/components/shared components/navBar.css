@@ -14,5 +14,16 @@
   height: 6vh;
 }
 .searchBox{
+  position: relative;
+  border-style: solid;
+  height: 80vh;
+  top: 7vh;
+  left:45%;
+  background-color: white;
+  width: 50vw;
+  z-index: 2;
+  border-radius: 10px;
+  transform: translateX(-50%);
+
   
 }
