@@ -4,6 +4,9 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
+
+
+
 const WebsiteUser=()=>{
     const Navigate = useNavigate();
     const user = useContext(UserContext);
@@ -25,17 +28,16 @@ const WebsiteUser=()=>{
         
         })
         },[id])
-    ///////////////////////////////////////////////////////////
-    
-
-
-//////////////////////////////////////////////////////////////////
 
 
 
 
-    return(
+
+    return(<div>
         <h1>{selectedUser.fullName}</h1>
+       
+       
+        </div>
     )
 
 }

@@ -41,6 +41,7 @@ setUserInfo(result.data)
 
 
     return (<div>
+        <img src={userInfo.image}></img>
         <h1>{userInfo.fullName}</h1>
         <button onClick={()=>{setIsTextArea(!isTextAreaShown);setIsMyPostsShown(false)}}>add a post</button>
         <button onClick={()=>{setIsMyPostsShown(!isMyPostsShown);setIsTextArea(false)}}>My Posts</button>

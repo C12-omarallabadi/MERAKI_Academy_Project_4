@@ -10,19 +10,11 @@ const UserDashboard = () => {
   const [UpdateBoxShown, setUpdateBox] = useState(false);
   const [textOfUpdate, setTextOfUpdate] = useState("");
   const [afterUpdate, setAfterUpdate] = useState("");
-
-
-
-
-
   const [isCkeckBoxShown, setIsCheckBox] = useState(false);
-
   const [postId, setPostId] = useState("");
-
   const [isCommentsShown, setCommentsState] = useState(false);
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
-
   const Navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [reversedPosts, setReversedPosts] = useState([]);
@@ -51,7 +43,10 @@ const UserDashboard = () => {
   
   }
 
+
   //////////////////////////////////////////
+
+  
   const allPosts = reversedPosts.map((elem, index) => {
     return (
       <div key={index} className="postContainer">

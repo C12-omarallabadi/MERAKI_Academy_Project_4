@@ -4,14 +4,15 @@ const Jwt = require("jsonwebtoken");
 const userModel = require("../models/userSchema");
 const register = (req, res) => {
   const { firstName, lastName, age, email, password, role } = req.body;
+
   const newUser = new userModel({
     firstName,
     lastName,
-    fullName:(firstName+" "+lastName).toLocaleLowerCase(),
+    fullName: (firstName + " " + lastName).toLocaleLowerCase(),
     age,
     email,
     password,
-    role:"67027c8f73e54b8b5f091793",
+    role: "67027c8f73e54b8b5f091793",
   });
   newUser
     .save()
@@ -53,8 +54,8 @@ const login = async (req, res) => {
           massage: "Valid login credentials",
           token: token,
           role: user.role,
-          userId:user._id
-
+          userId: user._id,
+          user:user
         });
       } else {
         res.status(403).json({
@@ -99,19 +100,15 @@ const deleteUserById = (req, res) => {
       res.status(404).json(err.message);
     });
 };
-const getAllUsers=(req,res)=>{
+const getAllUsers = (req, res) => {
   userModel
-  .find({})
-  .then((result) => {
-    res.status(200).json(result);
-  })
-  .catch((err) => {
-    res.status(500).json(err.message);
-  });
+    .find({})
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json(err.message);
+    });
+};
 
-}
-
-
-
-
-module.exports = { register, login, getUserById, deleteUserById ,getAllUsers};
+module.exports = { register, login, getUserById, deleteUserById, getAllUsers };

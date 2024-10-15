@@ -8,15 +8,21 @@ import UserDashboard from "./components/role 2 interface/UserDashboard";
 import Navbar from "./components/shared components/Navbar";
 import MyAcount from "./components/role 2 interface/MyAcount";
 import WebsiteUser from "./components/role 2 interface/WebsiteUser";
+import DrawerM from "./components/shared components/Drawer";
 export const UserContext = createContext();
 
 const App = () => {
+  const [myName,setMyName]=useState(sessionStorage.getItem("myName")||"")
+
+  const[myInfo,setMyInfo]=useState(sessionStorage.getItem("user")||"")
+  const [file,setFile]=useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(
     sessionStorage.getItem("isLoggedIn") || false
   );
   const [token, setToken] = useState(sessionStorage.getItem("token") || "");
   const [userId, setUserId] = useState(sessionStorage.getItem("userId") || "");
   const Navigate = useNavigate();
+  useEffect(()=>{},[])
   return (
     <div className="App">
       <UserContext.Provider
@@ -27,11 +33,18 @@ const App = () => {
           setUserId,
           isLoggedIn,
           setIsLoggedIn,
+          file,
+          setFile,
+          myInfo,
+          setMyInfo,
+          myName,
+          setMyName
       
           
         }}
       >
-        <Navbar />
+{isLoggedIn? <DrawerM/>:null}
+        {isLoggedIn?<Navbar />:null}
         <br></br>
         <br></br>
 

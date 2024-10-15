@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { UserContext } from "../../App";
 import axios from "axios";
 
 const Register = () => {
+const user=useContext(UserContext)
   const Navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -12,10 +14,19 @@ const Register = () => {
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+
+
+//////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+
+
 
   const goToRegister = () => {
     axios
       .post("http://localhost:5000/users/register", {
+       
         firstName: firstName,
         lastName: lastName,
         age: age,
@@ -34,7 +45,9 @@ const Register = () => {
   };
   return (
     <>
+    
       <h1>register</h1>
+      
       <TextField
         onChange={(e) => {
           setFirstName(e.target.value);
