@@ -12,6 +12,10 @@ import DrawerM from "./components/shared components/Drawer";
 export const UserContext = createContext();
 
 const App = () => {
+  const [Type,setType]=useState("permanent")
+  const [Display,setDisplay]=useState("none")
+
+
   const [myName,setMyName]=useState(sessionStorage.getItem("myName")||"")
 
   const[myInfo,setMyInfo]=useState(sessionStorage.getItem("user")||"")
@@ -38,7 +42,11 @@ const App = () => {
           myInfo,
           setMyInfo,
           myName,
-          setMyName
+          setMyName,
+          Type,
+          setType,
+          Display,
+          setDisplay
       
           
         }}

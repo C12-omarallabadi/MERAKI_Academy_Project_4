@@ -104,14 +104,14 @@ const allUsers=users.map((elem,index)=>{
   return (
     <div>
       <Box sx={{textAlign:"start"}}>
-       <AppBar sx={{ml:`${drawerWidth}px`,width:`calc(100% - ${drawerWidth}px)`}} position="static">
+       <AppBar sx={{ml:{md:`${drawerWidth}px`},width:{md:`calc(100% - ${drawerWidth}px)`}}} position="static">
         <Toolbar>
-          <IconButton
+          <IconButton onClick={()=>{user.setType("temporary");user.setDisplay("block")}}
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, display:{xs:"block",md:"none"} }}
           >
             <MenuIcon />
           </IconButton>

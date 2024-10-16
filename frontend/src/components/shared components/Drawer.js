@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -13,9 +14,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { UserContext } from '../../App';
+
 const drawerWidth = 240;
 
+
 const DrawerM=()=>{
+  const user=useContext(UserContext)
+
     const Navigate=useNavigate()
 
     ///////////////////////////////////////////////////////////////////
@@ -24,8 +30,11 @@ const DrawerM=()=>{
         <>
         
           <Drawer
-        variant="permanent"
+        variant={user.Type}
+        open={true}
+        onClose={()=>{user.setDisplay("none");user.setType("permanent")}}
         sx={{
+          display:{xs:user.Display,md:"block"},
           width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
