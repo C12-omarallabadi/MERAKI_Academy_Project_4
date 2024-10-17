@@ -14,7 +14,7 @@ const createPost = (req, res) => {
 const getAllPosts = (req, res) => {
   postModel
     .find({})
-    .populate("author")
+    .populate("author").populate("comments.comment.commenter")
     .then((result) => {
       if (result.length == 0) {
         res.status(404).json("no posts");
