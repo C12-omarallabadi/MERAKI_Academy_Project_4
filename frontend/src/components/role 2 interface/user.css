@@ -16,7 +16,7 @@
 }
 
 .postSection {
-  display: block;
+  display:block;
   top:15%;
   position: fixed;
   width: 300px;
@@ -39,6 +39,7 @@
   border-style: solid;
 }
 .name {
+  position: fixed;
   display: flex;
   justify-items: flex-start;
 }
@@ -47,23 +48,16 @@ display: flex;
 flex-direction: column;
 justify-content: center;
   position: fixed;
-  border-style: solid;
-  width: 400px;
-  height: 200px;
+
+ 
   top :25%;
-background-color: grey; 
-  white-space: normal;
-  box-sizing: border-box;
+
   left: 50%;
     transform: translateX(-50%);
 
 
 }
-button{
-border: 0px;
-border-radius: 5px;
-background-color: rgb(152, 183, 230);
-}
+
 .nameBar{
   border-radius: 5px;
 
@@ -71,4 +65,20 @@ background-color: rgb(152, 183, 230);
   padding: 2px;
 
 }
+.TEST{
+  margin-top: 12vh;
+  display: 'block';
+  overflow-y: 'auto';
+  cursor: 'none';
+  pointer-events: 'auto';
+  height: '300px',
+
+}
+.checkpost{
+  font-size: 1.5vw;
+  max-height: 200px;
+  overflow-y: auto; 
+  border: 1px solid #ccc; 
+  padding: 10px} 
+
 

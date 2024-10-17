@@ -5,8 +5,59 @@ import "./user.css";
 import * as React from "react";
 import { UserContext } from "../../App";
 import Comments from "./Comments";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import { Divider } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+
+
+
+
+
+
+
+
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`.toUpperCase(),
+  };
+}
+
 
 const UserDashboard = () => {
+  ///////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
   const [UpdateBoxShown, setUpdateBox] = useState(false);
   const [textOfUpdate, setTextOfUpdate] = useState("");
   const [afterUpdate, setAfterUpdate] = useState("");
@@ -16,6 +67,8 @@ const UserDashboard = () => {
   const user = useContext(UserContext);
   const headers = { Authorization: `Bearer ${user.token}` };
   const Navigate = useNavigate();
+  const [post, setPost] = useState({});
+
   const [posts, setPosts] = useState([]);
   const [reversedPosts, setReversedPosts] = useState([]);
   useEffect(() => {
@@ -42,69 +95,59 @@ const UserDashboard = () => {
     .catch((err)=>{console.log(err)})
   
   }
-
-
   //////////////////////////////////////////
 
   
   const allPosts = reversedPosts.map((elem, index) => {
     return (
-      <div key={index} className="postContainer">
-        <div className="name">
-         <div className="nameBar"> <h4>
-            {elem.author.fullName}
-          </h4></div>
-        </div>
-        <div className="post" key={index}>
-          <h4> </h4>
-          <p>{elem.post}</p>
-        </div>
-        <div className="postButtons">
-          <button
-            onClick={() => {
-              setCommentsState(!isCommentsShown);
-              setPostId(elem._id);
-            }}
-          >
-            comments
-          </button>
+<Card key={index} sx={{ width:`${50}vw`,minHeight:200, mb:5 ,pr:3,pl:3}}>
+       
+        <CardContent >
+          <Box sx={{display:"flex", alignItems:"center",height:`${6}vw`,gap:`${1.5}vw`,ml:`${1.5}vw`,mr:`${1.5}vw`,mb:`${1}vh`}}>
+        <Avatar    {...stringAvatar(elem.author.fullName)} style={{ width: `${4}vw`, height: `${4}vw`, fontSize: `${2}vw`  }} />
+          <Typography sx={{fontWeight: 'bold', fontSize: `${2}vw` }} gutterBottom variant="h4" component="div">
+          {elem.author.fullName}
+          </Typography>
+          </Box>
+          <Divider sx={{mt:`${1}vh`,mb:`${2}vh`}}/>
+          <Typography  variant="h4" sx={{ ml:`${1.5}vw`,mr:`${1.5}vw`,color: 'text.secondary', display:"flex",fontSize: '3vw' }}>
+           {elem.post}
+          </Typography>
+          <Divider sx={{mt:3,mb:2}} />
+         {user.userId===elem.author._id? <Button  onClick={()=>{setPost(elem.post);setPostId(elem._id);setIsCheckBox(true)}}  variant="plain" sx={{color:"text.secondary",height:`${3.5}vw`,width:`${3}vw`}}>delete</Button>:null}
+       
+          
+        </CardContent>
+      
+    </Card>
+    
 
-          {user.userId === elem.author._id ? (
-            <button
-              onClick={() => {
-                setIsCheckBox(true);
-                setPostId(elem._id);
-              }}
-            >
-              delete
-            </button>
-          ) : null}
-          {user.userId === elem.author._id ? (
-            <button
-              onClick={() => {
-                setUpdateBox(true)
-                setTextOfUpdate(elem.post)
-                
-                setPostId(elem._id);
-              }}
-            >
-              update
-            </button>
-          ) : null}
-        </div>
-      </div>
     );
   });
   return (
-    <div>
-      <div className="postSection">
-        {user.token ? allPosts : Navigate("/")}
-       
-      </div>
-      {isCkeckBoxShown ? (
-        <div className="checkBox">
-          <h4>are you realy want to delete this post?</h4>
-        <div>  <button
+    <Box sx={{  height:"auto",
+      borderstyle: "solid",
+      background: "lightgrey",
+    display: "flex", 
+flexDirection:"column" ,
+alignItems:"center",
+justifyItems:"center",
+ width:{xs:`${100}vw`, md:`calc(100% - 240px)`},
+      gap: "20px",
+      ml:{xs:0,md: "240px"}}}  >
+        
+      <div className="TEST">
+     {allPosts}
+     {isCkeckBoxShown ? (
+      <Box  sx={{height:`${10}%`,width:`${40}%`, position:"fixed",top :`${30}%`,
+
+      left: `${30}%`,
+        }}>
+        <Paper elevation={24}  >
+          <Typography sx={{display:"flex",justifyContent:"center",height:40,alignItems:'center',fontSize:`${1.5}vw`}}>are you realy want to delete this post?</Typography>
+          <p className="checkpost">{post}</p>
+          
+        <Box sx={{height:40, display:"flex",justifyContent:"space-evenly"}}>  <Button
             onClick={() => {
               axios
                 .delete(`http://localhost:5000/posts/${postId}`, { headers })
@@ -119,34 +162,20 @@ const UserDashboard = () => {
             }}
           >
             yes
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => {
               setIsCheckBox(false);
             }}
           >
             no
-          </button></div>
-        </div>
+          </Button></Box>
+        </Paper>
+        </Box>
       ) : null}
-
-
-{UpdateBoxShown?<div className="updateBox">
-<textarea onChange={(e)=>{setAfterUpdate(e.target.value)}} defaultValue={textOfUpdate}></textarea>
-<div><button onClick={updatePost}>update now</button>
-<button onClick={()=>{setUpdateBox(false)}}>back</button></div>
-      </div>:null}
-
-      {isCommentsShown ? (
-          <div>
-            <Comments
-              postId={postId}
-              isCommentsShown={isCommentsShown}
-              setCommentsState={setCommentsState}
-            />
-          </div>
-        ) : null}
-    </div>
+     </div>
+    </Box>
+    
   );
 };
 export default UserDashboard;

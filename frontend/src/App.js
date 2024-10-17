@@ -53,8 +53,7 @@ const App = () => {
       >
 {isLoggedIn? <DrawerM/>:null}
         {isLoggedIn?<Navbar />:null}
-        <br></br>
-        <br></br>
+        
 
         <Routes>
           <Route path="/" element={<Login />} />
