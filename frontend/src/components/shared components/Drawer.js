@@ -58,14 +58,7 @@ const DrawerM=()=>{
                   <ListItemText color='inhert' primary={"My Acount"} />
                 </ListItemButton>
               </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton onClick={()=>{Navigate(-1)}}>
-                  <ListItemIcon>
-                  <InboxIcon />
-                  </ListItemIcon >
-                  <ListItemText color='inhert' primary={"back"} />
-                </ListItemButton>
-              </ListItem>
+             
 
         
       </Drawer>

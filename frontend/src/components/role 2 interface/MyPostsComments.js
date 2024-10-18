@@ -3,8 +3,49 @@ import "./myPostsComments.css";
 import axios from "axios";
 import { UserContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+//////////////////////////////////////////////////////////////////////
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import { Divider, TextField } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+//////////////////////////////////////////////////////////////////
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`.toUpperCase(),
+  };
+}
+///////////////////////////////////////////////////////////////
 const MyPostsComments=({isMyPostsCommentsShown,setIsMyPostsCommentsShown,myPostId,setMyPostId})=>{
-    const[myPostComments,setMyPostComments]=useState([])
+    const[myPostCommentss,setMyPostCommentss]=useState([])
     const[myPost,setMyPost]=useState('')
     const[commentInput,setCommentInput]=useState('')
     const [myName,setMyName]=useState("")
@@ -18,7 +59,7 @@ useEffect(()=>{
     axios
     .get(` http://localhost:5000/comments/${myPostId}`, { headers })
     .then((result) => {
-      setMyPostComments(result.data);
+      setMyPostCommentss(result.data);
     })
     .catch((err) => {
    
@@ -28,10 +69,17 @@ useEffect(()=>{
 
 ///////////////////////////////////////////////////////////////////
 const postComments =
-myPostComments.length == 0
+myPostCommentss.length == 0
   ? false
-  : myPostComments.map((elem, index) => {
-      return <div className="comment" key={index}><h4 >{elem.commenter.fullName}</h4><p>{elem.comment}</p></div>;
+  : myPostCommentss.map((elem, index) => {
+      return <Paper elevation={3}  key={index} sx={{background:"rgb(240, 240, 240)",width:`${40}vw`,mb:`${2.5}vh`,mt:`${2.5}vh`}}><Box sx={{pl: `${1}vw`,height: `${8}vh`,display:"flex",gap:`${.7}vw`,alignItems:"end"}}>
+      <Avatar    {...stringAvatar(elem.commenter.fullName)} style={{ width: `${3}vw`, height: `${3}vw`, fontSize: `${2}vw`,padding: `${1}vw`  }} />
+      <Typography sx={{fontSize: `${2}vw`}} variant="h6">{elem.commenter.fullName}</Typography></Box><Box sx={{  maxHeight:`${20}vh`,
+    overflowWrap:"break-word",
+    wordWrap:"break-word",
+    textAlign:"start",
+    padding:`${1}vw`,
+    overflowY:"auto",maxHeight: `${20}vh`}}><Typography sx={{fontSize: `${2}vw`}}>{elem.comment}</Typography></Box></Paper>;
     });
 
 ///////////////////////////////////////////////////////////////////
@@ -68,28 +116,39 @@ setCommentInput("")    })
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    return( <div className="commentsContainer">
-        <div className="Post"> <h4>{myName}</h4><p>{myPost.post}</p></div>
-      <div className="commentsBar">
-        <button
-          onClick={() => {
-            setIsMyPostsCommentsShown(!isMyPostsCommentsShown);
-          }}
-          className="barButton"
-        >
-          back
-        </button>
-        <h3>comments</h3>
-      </div>
-      <div className="commentsWindow">{postComments?postComments:<h3>be the first commenter</h3>}</div>
-      <div className="inputContainer">
-        <input value={commentInput} onChange={(e)=>{setCommentInput(e.target.value)}} className="commentArea" placeholder="add comment" />
-        <button onClick={addComment} className="addCommentButton">add comment</button>
-      </div>
-    </div>)
+    return( <Paper elevation={24} sx={{width:`${50}vw`,position:"fixed",top:`${17}%`}}>
+      <Box sx={{display:"flex",alignItems:"end",ml:`${2}vw`,gap:`${.7}vw`,height: `${8}vh`}}>
+      <Avatar    {...stringAvatar(user.myName)} style={{ width: `${3}vw`, height: `${3}vw`, fontSize: `${2}vw`  }} />
+      <Typography variant="h6"sx={{fontSize:`${2}vw`}}>{user.myName}</Typography>
+      </Box>
+      <Box  >
+        <Typography sx={{ 
+        textAlign:"start",
+              padding:`${1.5}vw`,
+                color: "text.secondary",
+                fontSize: `${2}vw`,
+                maxHeight:`${17}vh`,
+  
+                overflowWrap:"break-word",
+                wordWrap:"break-word",
+                overflowY:"auto"}}>{myPost.post}</Typography>
+        </Box>
+  
+        <Divider></Divider>
+      
+        <Box sx={{height:`${4}vh`,display:"flex",alignItems:"center",justifyContent:"space-between",pr:`${20}vw`}}>
+  <Button onClick={()=>{setIsMyPostsCommentsShown(false)}} sx={{fontSize:`${1.5}vw`}}>Back</Button><Typography sx={{fontSize:`${2}vw`}}>comments</Typography>
+        </Box><Divider></Divider>
+        <Box sx={{maxHeight:`${15}vw`,overflowY:"auto",display:"flex",flexDirection:"column",alignItems:"center",minHeight:`${30}vh`}}>
+          {postComments?postComments:<Typography sx={{mt:`${4}vh`}}>Be The First Commenter</Typography>}
+        </Box>
+        <Box sx={{display:"flex",alignItems:"stretch"}} >
+        <TextField sx={{flexGrow:1}}  value={commentInput} onChange={(e)=>{setCommentInput(e.target.value)}}  placeholder="add comment" />
+        <Button  onClick={addComment} className="addCommentButton">add comment</Button>
+        </Box>
+     </Paper>)
 }
 export default MyPostsComments

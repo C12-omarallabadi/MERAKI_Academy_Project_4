@@ -15,6 +15,8 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+
 ////////////////////////////////////////////////////////
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -271,7 +273,8 @@ const UserDashboard = () => {
   return (
     <Box
       sx={{
-        height: "auto",
+        height: '100vh',
+        overflowY:"auto",
         borderstyle: "solid",
         background: "lightgrey",
         display: "flex",
@@ -287,14 +290,7 @@ const UserDashboard = () => {
         {allPosts}
         {isCkeckBoxShown ? (
           <Box
-            sx={{
-              height: `${10}%`,
-              width: `${40}%`,
-              position: "fixed",
-              top: `${30}%`,
-
-              left: `${30}%`,
-            }}
+          sx={{width:`${50}vw`,position:"fixed",top:`${30}%`}}
           >
             <Paper elevation={24}>
               <Typography
@@ -304,11 +300,18 @@ const UserDashboard = () => {
                   height: 40,
                   alignItems: "center",
                   fontSize: `${1.5}vw`,
+              
                 }}
               >
                 are you realy want to delete this post?
               </Typography>
-              <Typography className="checkpost">{post}</Typography>
+              <Typography sx={ {  maxHeight:`${20}vh`,
+    overflowWrap:"break-word",
+    wordWrap:"break-word",
+    textAlign:"start",
+    padding:`${1}vw`,
+    overflowY:"auto",maxHeight: `${20}vh`
+                 }}>{post}</Typography>
 
               <Box
                 sx={{
@@ -360,26 +363,27 @@ const UserDashboard = () => {
           />
         </div>
       ) : null}
-      {UpdateBoxShown ? (
-        <div className="updateBox">
-          <textarea
-            onChange={(e) => {
-              setAfterUpdate(e.target.value);
-            }}
-            defaultValue={textOfUpdate}
-          ></textarea>
-          <div>
-            <button onClick={updatePost}>update now</button>
-            <button
-              onClick={() => {
-                setUpdateBox(false);
-              }}
-            >
-              back
-            </button>
-          </div>
-        </div>
-      ) : null}
+      {UpdateBoxShown?<Paper elevation={24} sx={{width:`${50}vw`,position:"fixed",top:`${30}%`}}>
+        <Box sx={{display:"flex",alignItems:"center",gap:`${.7}vw`,height:`${10}vh`,pl:`${.7}vw`}}>
+      <Avatar
+                {...stringAvatar(user.myName)}
+                style={{
+                  width: `${3}vw`,
+                  height: `${3}vw`,
+                  fontSize: `${2}vw`,
+                }}
+              />
+        <Typography>{user.myName}</Typography></Box>
+           
+<TextField  
+      multiline
+      rows={4}
+      variant="outlined"
+      fullWidth onChange={(e)=>{setAfterUpdate(e.target.value)}} defaultValue={textOfUpdate}></TextField>
+<Box>
+<Button onClick={()=>{setUpdateBox(false)}}>back</Button>
+<Button sx onClick={updatePost}>update now</Button></Box>
+      </Paper>:null}
     </Box>
   );
 };
