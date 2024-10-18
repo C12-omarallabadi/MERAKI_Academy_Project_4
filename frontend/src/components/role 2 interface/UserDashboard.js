@@ -134,9 +134,9 @@ const UserDashboard = () => {
 
   const allPosts = reversedPosts?.map((elem, index) => {
     return (
-      <Card
+      <Card 
         key={index}
-        sx={{ width: `${50}vw`, minHeight: 200, mb: 5, pr: 3, pl: 3 }}
+        sx={{ width: `${50}vw`, minHeight:  `${10}vh`, mb: 5, pr: 3, pl: 3 }}
       >
         <CardContent>
           <Box
@@ -229,14 +229,25 @@ const UserDashboard = () => {
               ml: `${1.5}vw`,
               mr: `${1.5}vw`,
               color: "text.secondary",
-              display: "flex",
-              fontSize: "3vw",
+              textAlign:"start",
+              fontSize: `${1.5}vw`,
+              maxHeight:`${20}vh`,
+              minHeight:`${3}vh`,
+              overflowWrap:"break-word",
+              wordWrap:"break-word",
+              overflowY:"auto"
             }}
           >
             {elem.post}
           </Typography>
-          <Divider sx={{ mt: 3, mb: 2 }} />
-          <Box sx={{ display: "flex" }}>
+          <Divider sx={{ mt: 1, mb: 2 }} />
+          <Box sx={{ display: "flex" ,justifyContent:"end"}}>
+            <Button   sx={{
+                color: "text.secondary",
+                flexGrow: 1,
+                fontSize:`${1}vw`
+
+              }} >like</Button>
             <Button
               onClick={() => {
                 setPost(elem);
@@ -246,12 +257,11 @@ const UserDashboard = () => {
               variant="plain"
               sx={{
                 color: "text.secondary",
-                height: `${3.5}vw`,
-                width: `${3}vw`,
                 flexGrow: 1,
+                fontSize:`${1}vw`
               }}
             >
-              comments
+              comment
             </Button>
           </Box>
         </CardContent>
