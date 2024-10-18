@@ -86,6 +86,7 @@ const UserDashboard = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event, value, test) => {
+    setTextOfUpdate(test);
     setPost(test);
     setPostId(value);
     setAnchorEl(event.currentTarget);
@@ -199,6 +200,7 @@ const UserDashboard = () => {
                         <MenuItem
                           onClick={() => {
                             handleClose();
+                            setUpdateBox(true);
                           }}
                         >
                           update
@@ -235,24 +237,6 @@ const UserDashboard = () => {
           </Typography>
           <Divider sx={{ mt: 3, mb: 2 }} />
           <Box sx={{ display: "flex" }}>
-            {user.userId === elem.author._id ? (
-              <Button
-                onClick={() => {
-                  setPost(elem.post);
-                  setPostId(elem._id);
-                  setIsCheckBox(true);
-                }}
-                variant="plain"
-                sx={{
-                  color: "text.secondary",
-                  height: `${3.5}vw`,
-                  width: `${3}vw`,
-                  flexGrow: 1,
-                }}
-              >
-                delete
-              </Button>
-            ) : null}
             <Button
               onClick={() => {
                 setPost(elem);
@@ -364,6 +348,26 @@ const UserDashboard = () => {
             isCommentsShown={isCommentsShown}
             setCommentsState={setCommentsState}
           />
+        </div>
+      ) : null}
+      {UpdateBoxShown ? (
+        <div className="updateBox">
+          <textarea
+            onChange={(e) => {
+              setAfterUpdate(e.target.value);
+            }}
+            defaultValue={textOfUpdate}
+          ></textarea>
+          <div>
+            <button onClick={updatePost}>update now</button>
+            <button
+              onClick={() => {
+                setUpdateBox(false);
+              }}
+            >
+              back
+            </button>
+          </div>
         </div>
       ) : null}
     </Box>
