@@ -14,7 +14,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { UserContext } from '../../App';
+
 
 const drawerWidth = 240;
 
@@ -23,6 +26,11 @@ const DrawerM=()=>{
   const user=useContext(UserContext)
 
     const Navigate=useNavigate()
+    const [alignment, setAlignment] = React.useState('web');
+
+  const handleChange = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
 
     ///////////////////////////////////////////////////////////////////
 
@@ -40,7 +48,17 @@ const DrawerM=()=>{
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
-        <h1>test</h1>
+        <ToggleButtonGroup 
+      color="primary"
+      value={alignment}
+      exclusive
+      onChange={handleChange}
+      aria-label="Platform"
+    >
+      <ToggleButton onClick={()=>{user.setMode("light")}} sx={{flexGrow:1}} value="web">light</ToggleButton>
+      <ToggleButton onClick={()=>{user.setMode("dark")}} sx={{flexGrow:1}} value="android">dark</ToggleButton>
+     
+    </ToggleButtonGroup>
        <Divider/>
        <ListItem disablePadding>
                 <ListItemButton onClick={()=>{Navigate("/")}}>

@@ -37,6 +37,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Popover from "@mui/material/Popover";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
+import { useTheme } from "@emotion/react"
 
 //////////////////////////////////////////////////////////////////////////////////
 function stringToColor(string) {
@@ -71,6 +72,7 @@ function stringToColor(string) {
 
 /////////////////////////////////////////////////////////////////////////////////
 const MyAcount =()=>{
+    const theme=useTheme()
     const Navigate=useNavigate()
     const user=useContext(UserContext)
     const headers = { Authorization: `Bearer ${user.token}` };
@@ -106,7 +108,7 @@ setUserInfo(result.data)
          height: '100vh',
          overflowY:"auto",
           borderstyle: "solid",
-          background: "lightgrey",
+          background: theme.palette.omar.light,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

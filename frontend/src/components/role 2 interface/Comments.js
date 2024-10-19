@@ -15,6 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import { useTheme } from "@emotion/react";
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 function stringToColor(string) {
   let hash = 0;
@@ -47,6 +48,7 @@ function stringAvatar(name) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Comments = ({ postId, isCommentsShown, setCommentsState ,post }) => {
+  const theme=useTheme()
   const Navigate=useNavigate()
 
 
@@ -85,7 +87,7 @@ setInputBar("")    })
     comments.length == 0
       ? false
       : comments.map((elem, index) => {
-          return <Paper elevation={3}  key={index} sx={{background:"rgb(240, 240, 240)",width:`${40}vw`,mb:`${2.5}vh`,mt:`${2.5}vh`}}><Box sx={{pl: `${1}vw`,height: `${8}vh`,display:"flex",gap:`${.7}vw`,alignItems:"end"}}>
+          return <Paper elevation={3}  key={index} sx={{background:theme.palette.omar.light,width:`${40}vw`,mb:`${2.5}vh`,mt:`${2.5}vh`}}><Box sx={{pl: `${1}vw`,height: `${8}vh`,display:"flex",gap:`${.7}vw`,alignItems:"end"}}>
             <Avatar    {...stringAvatar(elem.commenter.fullName)} style={{ width: `${3}vw`, height: `${3}vw`, fontSize: `${2}vw`,padding: `${1}vw`  }} />
             <Typography sx={{fontSize: `${2}vw`}} variant="h6">{elem.commenter.fullName}</Typography></Box><Box sx={{  maxHeight:`${20}vh`,
           overflowWrap:"break-word",

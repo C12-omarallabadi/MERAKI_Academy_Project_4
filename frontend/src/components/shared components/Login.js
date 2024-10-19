@@ -11,6 +11,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import { Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 
 
@@ -19,6 +20,7 @@ import { Typography } from "@mui/material";
 
 
 const Login = () => {
+  const theme=useTheme()
   
   const user = useContext(UserContext);
   const Navigate = useNavigate();
@@ -70,10 +72,10 @@ setIsError(true)
       }); //
   };
   return (
-    <Box sx={{background:"rgb(240, 240, 240)",height:`100vh`,display:"flex",flexDirection:"column",justifyContent:"center",gap: `${10}vh`}}>
+    <Box sx={{background:theme.palette.omar.light,height:`100vh`,display:"flex",flexDirection:"column",justifyContent:"center",gap: `${10}vh`}}>
     <Box sx={{ display:"flex",alignItems:"center",justifyContent:"space-evenly"}}>
       <Box sx={{width:`${30}vw`,textAlign:"start"}}>
-    <Typography sx={{fontSize:`${10}vh`, fontWeight:"bold",color:"rgb(21, 105, 214)"}}>Echoo</Typography>
+    <Typography sx={{fontSize:`${10}vh`, fontWeight:"bold",color:"#0288d1"}}>Echoo</Typography>
     <Typography sx={{fontSize:`${2}vw`}}>Let your voice resonate and connect with those around you.</Typography>
     </Box>
 
@@ -102,7 +104,7 @@ setIsError(true)
 
       <Button sx={{width:"100%"}} variant="contained" onClick={goToLogin}>login</Button>
      
-      <Button variant="contained"sx={{width:`${15}vw`,background:" rgb(25, 195, 25)"}}
+      <Button variant="contained"sx={{width:`${15}vw`,background:" #2e7d32"}}
         onClick={() => {
           Navigate("/register");
         }}

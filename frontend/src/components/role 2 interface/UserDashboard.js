@@ -36,6 +36,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Popover from "@mui/material/Popover";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
+import { useTheme } from "@emotion/react";
 
 ////////////////////////////////////////////////////////////////////////////
 function stringToColor(string) {
@@ -69,6 +70,7 @@ function stringAvatar(name) {
 
 const UserDashboard = () => {
   ///////////////////////////////////////////////////////////
+  const theme=useTheme()
 
   ////////////////////////////////////////////////////////////
   const [UpdateBoxShown, setUpdateBox] = useState(false);
@@ -185,7 +187,7 @@ const UserDashboard = () => {
                 >
                   <MoreHorizIcon />
                 </IconButton>
-                <Popover
+                <Popover elevation={1}
                   id={id}
                   open={open}
                   anchorEl={anchorEl}
@@ -276,7 +278,7 @@ const UserDashboard = () => {
         height: '100vh',
         overflowY:"auto",
         borderstyle: "solid",
-        background: "lightgrey",
+        background: theme.palette.omar.light,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

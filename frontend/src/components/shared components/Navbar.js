@@ -22,6 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import { useTheme } from "@emotion/react";
 
 const drawerWidth = 240;
 ////////////////////////////////////
@@ -57,6 +58,7 @@ function stringAvatar(name) {
 ////////////////////////////////////
 
 const Navbar = () => {
+  const theme = useTheme();
   const user = useContext(UserContext);
 
   const headers = { Authorization: `Bearer ${user.token}` };
@@ -146,7 +148,7 @@ const Navbar = () => {
               }}
               renderInput={(params) => (
                 <TextField
-                  sx={{ background: blue[400] }}
+                  sx={{ background: theme.palette.search.light }}
                   {...params}
                   placeholder={`search`}
                   InputProps={{
