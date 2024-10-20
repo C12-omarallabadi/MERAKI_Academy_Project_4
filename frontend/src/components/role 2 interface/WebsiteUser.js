@@ -108,9 +108,9 @@ useEffect(()=>{
 ///////////////////////////////////////////////////////////////////////
 const showPosts = posts.map((elem, index) => {
     return (
-      <Card
+        <Card 
         key={index}
-        sx={{ width: `${50}vw`, minHeight: `${10}vh`, mb: 5, pr: 3, pl: 3 }}
+        sx={{ width: `${50}vw`, minHeight:  `${10}vh`, mb: 5, pr: 3, pl: 3 ,}}
       >
         <CardContent>
           <Box
@@ -131,7 +131,7 @@ const showPosts = posts.map((elem, index) => {
                 mb: `${1}vh`,
               }}
             >
-            {selectedUser&&  <Avatar
+             {selectedUser&& <Avatar  
                 {...stringAvatar(selectedUser.fullName)}
                 style={{
                   width: `${4}vw`,
@@ -145,9 +145,10 @@ const showPosts = posts.map((elem, index) => {
                 variant="h4"
                 component="div"
               >
-                {selectedUser.fullName}
+                {elem.author.fullName}
               </Typography>
             </Box>
+           
            
           </Box>
           <Divider sx={{ mt: `${1}vh`, mb: `${2}vh` }} />
@@ -157,43 +158,41 @@ const showPosts = posts.map((elem, index) => {
               ml: `${1.5}vw`,
               mr: `${1.5}vw`,
               color: "text.secondary",
-              textAlign: "start",
+              textAlign:"start",
               fontSize: `${2}vw`,
-              maxHeight: `${20}vh`,
-              minHeight: `${3}vh`,
-              overflowWrap: "break-word",
-              wordWrap: "break-word",
-              overflowY: "auto",
+              maxHeight:`${20}vh`,
+              minHeight:`${3}vh`,
+              overflowWrap:"break-word",
+              wordWrap:"break-word",
+              overflowY:"auto"
             }}
           >
             {elem.post}
           </Typography>
-          <Divider sx={{ mt: 1}} />
 
+          <Box>
+            <Divider></Divider>
           <Box sx={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"end"}}>
          <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.react) ? elem.react.length : 0} likes</Typography>
 
          <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.comments) ? elem.comments.length : 0} comments</Typography>
           </Box>
-          
-          <Divider sx={{  mb: 2 }} />
-          <Box sx={{ display: "flex", justifyContent: "end" }}>
-            <Button 
-              sx={{
+          </Box>
+          <Divider sx={{ mt: 1, mb: 2 }} />
+          <Box sx={{ display: "flex" ,justifyContent:"end"}}>
+            <Button   sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize: `${2}vw`,
-              }}
-            >
-              like
-            </Button>
+                fontSize:`${1}vw`
+
+              }} >like</Button>
             <Button
               
               variant="plain"
               sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize: `${1}vw`,
+                fontSize:`${1}vw`
               }}
             >
               comment
@@ -211,7 +210,7 @@ const showPosts = posts.map((elem, index) => {
 
     return(<Box
         sx={{
-         height: '100vh',
+        
          overflowY:"auto",
           borderstyle: "solid",
           background: theme.palette.omar.light,

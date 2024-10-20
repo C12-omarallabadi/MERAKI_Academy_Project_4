@@ -258,7 +258,7 @@ const addLike=()=>{
               sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize: `${2}vw`,
+                fontSize: `${1.2}vw`,
               }}
             >
               like
@@ -273,7 +273,7 @@ const addLike=()=>{
               sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize: `${1}vw`,
+                fontSize: `${1.2}vw`,
               }}
             >
               comment

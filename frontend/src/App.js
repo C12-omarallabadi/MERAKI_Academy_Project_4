@@ -77,6 +77,7 @@ const App = () => {
             <Route path="/socket" element={<Sockett />} />
 
             <Route path="/myAcount" element={<MyAcount />} />
+
             <Route path="/register" element={<Register />} />
             <Route path="/userDashboard" element={<UserDashboard />} />
             <Route path="/adminDashboard" element={<AdminDashboard />} />

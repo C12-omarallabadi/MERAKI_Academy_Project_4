@@ -27,9 +27,10 @@ postRouter.delete(
   authorization("DELETE_POST"),
   deletePostById
 );
-postRouter.patch("/:id",authentication, addReact);
+
 
 postRouter.put("/:id", authentication, updatePostById);
+postRouter.put("/reacts/:id",authentication, addReact);
 
 
 module.exports = postRouter;

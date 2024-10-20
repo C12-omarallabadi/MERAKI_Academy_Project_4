@@ -245,20 +245,20 @@ const UserDashboard = () => {
             {elem.post}
           </Typography>
 
-          <Typography>
+          <Box>
             <Divider></Divider>
           <Box sx={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"end"}}>
          <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.react) ? elem.react.length : 0} likes</Typography>
 
          <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.comments) ? elem.comments.length : 0} comments</Typography>
           </Box>
-          </Typography>
+          </Box>
           <Divider sx={{ mt: 1, mb: 2 }} />
           <Box sx={{ display: "flex" ,justifyContent:"end"}}>
             <Button   sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize:`${1}vw`
+                fontSize:`${1.2}vw`
 
               }} >like</Button>
             <Button
@@ -271,7 +271,7 @@ const UserDashboard = () => {
               sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize:`${1}vw`
+                fontSize:`${1.2}vw`
               }}
             >
               comment
