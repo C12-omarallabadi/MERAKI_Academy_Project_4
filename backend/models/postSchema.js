@@ -5,5 +5,7 @@ const postSchema = new mongoose.Schema({
   image: { type: String },
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  react: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+
 });
 module.exports = mongoose.model("Post", postSchema);

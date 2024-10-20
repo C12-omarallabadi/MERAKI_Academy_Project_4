@@ -234,7 +234,7 @@ const UserDashboard = () => {
               mr: `${1.5}vw`,
               color: "text.secondary",
               textAlign:"start",
-              fontSize: `${1.5}vw`,
+              fontSize: `${2}vw`,
               maxHeight:`${20}vh`,
               minHeight:`${3}vh`,
               overflowWrap:"break-word",
@@ -246,7 +246,12 @@ const UserDashboard = () => {
           </Typography>
 
           <Typography>
-          {Array.isArray(elem.comments) ? elem.comments.length : 0} comments
+            <Divider></Divider>
+          <Box sx={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"end"}}>
+         <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.react) ? elem.react.length : 0} likes</Typography>
+
+         <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.comments) ? elem.comments.length : 0} comments</Typography>
+          </Box>
           </Typography>
           <Divider sx={{ mt: 1, mb: 2 }} />
           <Box sx={{ display: "flex" ,justifyContent:"end"}}>

@@ -70,9 +70,10 @@ function stringAvatar(name) {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 const MyPosts = () => {
+
+
   const [myPosts, setMyPosts] = useState([]);
   const [myPost, setMyPost] = useState([]);
-
   const [reversedMyPosts, setReversedMyPosts] = useState([]);
   const [isMyPostsCommentsShown, setIsMyPostsCommentsShown] = useState(false);
   const [newPost, setNewPost] = useState("");
@@ -116,8 +117,21 @@ const MyPosts = () => {
     setReversedMyPosts(myPosts.reverse());
   }, [myPosts]);
   /////////////////////////////////////////////////////////////
+const addLike=()=>{
+  axios.patch("http://localhost:5000/posts/67146272c300ea61ae298fe9",{headers:headers}).
+  then((result)=>{
+    console.log("done")
+
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+}
+
+
 
   //////////////////////
+  
   /////////////////////////////////////////////////////////////
   const showMyPosts = reversedMyPosts.map((elem, index) => {
     return (
@@ -217,7 +231,7 @@ const MyPosts = () => {
               mr: `${1.5}vw`,
               color: "text.secondary",
               textAlign: "start",
-              fontSize: `${1.5}vw`,
+              fontSize: `${2}vw`,
               maxHeight: `${20}vh`,
               minHeight: `${3}vh`,
               overflowWrap: "break-word",
@@ -227,14 +241,24 @@ const MyPosts = () => {
           >
             {elem.post}
           </Typography>
-          {Array.isArray(elem.comments) ? elem.comments.length : 0} comments
-          <Divider sx={{ mt: 1, mb: 2 }} />
+          <Divider sx={{ mt: 1}} />
+
+          <Box sx={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"end"}}>
+         <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.react) ? elem.react.length : 0} likes</Typography>
+
+         <Typography sx={{ fontSize: `${1.2}vw`,}}> {Array.isArray(elem.comments) ? elem.comments.length : 0} comments</Typography>
+          </Box>
+          
+          <Divider sx={{  mb: 2 }} />
           <Box sx={{ display: "flex", justifyContent: "end" }}>
-            <Button
+            <Button onClick={addLike
+      
+              
+            }
               sx={{
                 color: "text.secondary",
                 flexGrow: 1,
-                fontSize: `${1}vw`,
+                fontSize: `${2}vw`,
               }}
             >
               like

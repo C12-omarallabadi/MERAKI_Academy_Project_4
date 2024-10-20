@@ -68,10 +68,9 @@ const updatePostById = (req, res) => {
       res.status(404).json(err.message);
     });
 };
-const addRemoveReact = (req, res) => {
-  const id = req.payload.userId;
+const addReact = (req, res) => {
   postModel
-    .findByIdAndUpdate(req.params.id, { $push: { reacts: id } })
+    .findByIdAndUpdate(req.params.id, { $push: { react: req.payload.userId} })
     .then((result) => {
       if (!result) {
         res.status(404).json("no post have this id");
@@ -93,13 +92,25 @@ const getPostById = (req, res) => {
       res.status(404).json(err.message);
     });
 };
-
+const getPostsById = (req, res) => {
+  postModel
+    .find({ author: req.params.id })
+    
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(404).json(err.message);
+    });
+};
 module.exports = {
   createPost,
   getAllPosts,
   getMyPosts,
   deletePostById,
   updatePostById,
-  addRemoveReact,
+  addReact,
   getPostById,
+  getPostsById,
+
 };
