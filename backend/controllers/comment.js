@@ -1,20 +1,33 @@
 const commentModel = require("../models/commentSchema");
 const postModel = require("../models/postSchema");
-const createComment = (req, res) => {
+const createComment = async (req, res) => {
   const { comment } = req.body;
+
   const newComment = new commentModel({
     comment: comment,
     commenter: req.payload.userId,
     postId: req.params.id,
   });
-  newComment
-    .save()
-    .then((result) => {
-      res.status(200).json(result);
-    })
-    .catch((err) => {
-      res.status(500).json(err.message);
+
+  try {
+    const savedComment = await newComment.save();
+    await postModel.findByIdAndUpdate(
+      newComment.postId,
+      { $push: { comments: savedComment } }
+    );
+
+    res.status(201).json({
+      success: true,
+      message: `Comment added`,
+      comment: savedComment,
     });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: `Server Error`,
+      err: err.message,
+    });
+  }
 };
 
 const deleteComment = (req, res) => {

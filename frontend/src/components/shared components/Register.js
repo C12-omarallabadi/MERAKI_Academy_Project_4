@@ -4,8 +4,20 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { UserContext } from "../../App";
 import axios from "axios";
+import Alert from '@mui/material/Alert';
+import Divider from '@mui/material/Divider';
+
+import Box from '@mui/material/Box';
+import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import { Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
+
 
 const Register = () => {
+  const theme=useTheme()
+
 const user=useContext(UserContext)
   const Navigate = useNavigate();
 
@@ -44,63 +56,67 @@ const user=useContext(UserContext)
       });
   };
   return (
-    <>
+    <Box sx={{background:theme.palette.omar.light,height:`100vh`}}>
     
-      <h1>register</h1>
-      
-      <TextField
+<Typography sx={{fontSize:`${10}vh`, fontWeight:"bold",color:"#0288d1"}}>Echoo</Typography>
+<Paper elevation={4} sx={{display:"inline-flex",padding:"20px",flexDirection:"column",gap: `${1.5}vh`,width:`${30}vw`,alignItems:"center"}}>  
+  <Typography sx={{fontSize:`${1.9}vw`,fontWeight:"bold"}}>Create a new account</Typography>
+  <Typography>It’s quick and easy.</Typography>
+<Divider/>  
+ <TextField sx={{width:"100%"}}
         onChange={(e) => {
           setFirstName(e.target.value);
         }}
-        label="First Name"
+       placeholder="First Name"
         variant="outlined"
       />
-      <br />
-      <TextField
+    
+      <TextField sx={{width:"100%"}}
         onChange={(e) => {
           setLastName(e.target.value);
         }}
-        label="Last Name"
+        placeholder="Last Name"
         variant="outlined"
       />
-      <br />
-      <TextField
+      
+      <TextField sx={{width:"100%"}}
         onChange={(e) => {
           setAge(e.target.value);
         }}
-        label="Age"
+       placeholder="Age"
         variant="outlined"
       />
-      <br />
-      <TextField
+      
+      <TextField sx={{width:"100%"}}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
         type="Email"
-        label="Email"
+       placeholder="Email"
         variant="outlined"
       />
-      <br />
-      <TextField
+    
+      <TextField sx={{width:"100%"}}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
         type="password"
-        label="Password"
+      placeholder="Password"
         variant="outlined"
       />
-      <br />
+  
 
-      <Button onClick={goToRegister}>register</Button>
-      <br />
+      <Button sx={{width:`${15}vw`,background:" #2e7d32", padding:`${.7}vw`}} variant="contained" onClick={goToRegister}>register</Button>
+     
       <Button
         onClick={() => {
           Navigate("/");
         }}
       >
-        i already have an acount
+       Already have an acount?
       </Button>
-    </>
+      </Paper> 
+    </Box>
   );
 };
 

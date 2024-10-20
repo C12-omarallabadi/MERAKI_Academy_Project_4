@@ -11,7 +11,7 @@ import WebsiteUser from "./components/role 2 interface/WebsiteUser";
 import DrawerM from "./components/shared components/Drawer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import { Sockett } from "./components/role 2 interface/Sockett";
 export const UserContext = createContext();
 
 const App = () => {
@@ -74,6 +74,8 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/socket" element={<Sockett />} />
+
             <Route path="/myAcount" element={<MyAcount />} />
             <Route path="/register" element={<Register />} />
             <Route path="/userDashboard" element={<UserDashboard />} />

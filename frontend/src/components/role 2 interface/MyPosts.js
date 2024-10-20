@@ -227,6 +227,7 @@ const MyPosts = () => {
           >
             {elem.post}
           </Typography>
+          {Array.isArray(elem.comments) ? elem.comments.length : 0} comments
           <Divider sx={{ mt: 1, mb: 2 }} />
           <Box sx={{ display: "flex", justifyContent: "end" }}>
             <Button
