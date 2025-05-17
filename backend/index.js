@@ -9,7 +9,7 @@ const userRouter = require("../backend/routes/user");
 const roleRouter = require("../backend/routes/role");
 const postRouter = require("../backend/routes/post");
 const commentRouter = require("../backend/routes/comment");
-const cloudinary=require("./cloudinary/cloudinary")
+
 
 
 const app = express();
