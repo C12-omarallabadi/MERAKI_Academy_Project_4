@@ -61,7 +61,7 @@ const Comments = ({ postId, isCommentsShown, setCommentsState ,post }) => {
 ///////////////////////////////////////////////////////////////
 const addComment=()=>{
     axios
-    .post(`http://localhost:5000/comments/${postId}`,{comment:inputBar},{ headers })
+    .post(`https://meraki-academy-project-4-fl11.onrender.com/comments/${postId}`,{comment:inputBar},{ headers })
     .then((result)=>{
 setInputBar("")    })
     .catch((err)=>{
@@ -73,7 +73,7 @@ setInputBar("")    })
 ///////////////////////////////////////////////////////////////
   useEffect(() => {
     axios
-      .get(` http://localhost:5000/comments/${postId}`, { headers })
+      .get(`https://meraki-academy-project-4-fl11.onrender.com/comments/${postId}`, { headers })
       .then((result) => {
         setComments(result.data);
       })

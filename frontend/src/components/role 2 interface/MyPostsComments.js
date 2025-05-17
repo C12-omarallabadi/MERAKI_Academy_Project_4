@@ -59,7 +59,7 @@ const MyPostsComments=({isMyPostsCommentsShown,setIsMyPostsCommentsShown,myPostI
 ///////////////////////////////////////////////////////////////////
 useEffect(()=>{
     axios
-    .get(` http://localhost:5000/comments/${myPostId}`, { headers })
+    .get(`https://meraki-academy-project-4-fl11.onrender.com/comments/${myPostId}`, { headers })
     .then((result) => {
       setMyPostCommentss(result.data);
     })
@@ -87,7 +87,7 @@ myPostCommentss.length == 0
 ///////////////////////////////////////////////////////////////////
 useEffect(()=>{
     axios
-    .get(`http://localhost:5000/posts/${myPostId}`,{headers})
+    .get(`https://meraki-academy-project-4-fl11.onrender.com/posts/${myPostId}`,{headers})
     .then((result)=>{
         setMyName(result.data.author.fullName )
 
@@ -106,7 +106,7 @@ useEffect(()=>{
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 const addComment=()=>{
     axios
-    .post(`http://localhost:5000/comments/${myPostId}`,{comment:commentInput},{ headers })
+    .post(`https://meraki-academy-project-4-fl11.onrender.com/comments/${myPostId}`,{comment:commentInput},{ headers })
     .then((result)=>{
 setCommentInput("")    })
     .catch((err)=>{

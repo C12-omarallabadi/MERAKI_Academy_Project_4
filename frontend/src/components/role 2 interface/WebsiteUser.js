@@ -80,7 +80,7 @@ const WebsiteUser=()=>{
     useEffect(()=>{
         
         axios
-        .get(`http://localhost:5000/users/${id}`,{headers})
+        .get(`hhttps://meraki-academy-project-4-fl11.onrender.com/users/${id}`,{headers})
         .then((result)=>{
         setSelectedUser(result.data)
         })
@@ -94,7 +94,7 @@ const WebsiteUser=()=>{
 useEffect(()=>{
         
     axios
-    .get(`http://localhost:5000/posts/user/${id}`,{headers})
+    .get(`https://meraki-academy-project-4-fl11.onrender.com/posts/user/${id}`,{headers})
     .then((result)=>{
     setPosts(result.data)
     })

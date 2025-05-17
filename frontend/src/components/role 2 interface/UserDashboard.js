@@ -106,7 +106,7 @@ const UserDashboard = () => {
   /////////////////////////////////////////////////
   useEffect(() => {
     axios
-      .get("http://localhost:5000/posts", { headers })
+      .get("https://meraki-academy-project-4-fl11.onrender.com/posts", { headers })
       .then((result) => {
         setPosts(result.data);
       })
@@ -123,7 +123,7 @@ const UserDashboard = () => {
   const updatePost = () => {
     axios
       .put(
-        `http://localhost:5000/posts/${postId}`,
+        `https://meraki-academy-project-4-fl11.onrender.com/posts/${postId}`,
         { post: afterUpdate },
         { headers }
       )
@@ -335,7 +335,7 @@ const UserDashboard = () => {
                 <Button
                   onClick={() => {
                     axios
-                      .delete(`http://localhost:5000/posts/${postId}`, {
+                      .delete(`https://meraki-academy-project-4-fl11.onrender.com/${postId}`, {
                         headers,
                       })
                       .then((result) => {

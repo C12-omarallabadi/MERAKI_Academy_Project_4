@@ -51,7 +51,7 @@ const Post = ({ userInfo, setIsMyPostsShown, setIsTextArea }) => {
   ///////////////////////////////////////////////////////////////
   const createNewPost = () => {
     axios
-      .post("http://localhost:5000/posts", { post: postArea }, { headers })
+      .post("https://meraki-academy-project-4-fl11.onrender.com/posts", { post: postArea }, { headers })
       .then((result) => {
         console.log("done");
         setIsTextArea(false);

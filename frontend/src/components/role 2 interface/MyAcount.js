@@ -86,7 +86,7 @@ const MyAcount =()=>{
 /////////////////////////////////////////////////////////////
 useEffect(()=>{                                            
 axios
-.get(`http://localhost:5000/users/${user.userId}`,{headers})
+.get(`https://meraki-academy-project-4-fl11.onrender.com/users/${user.userId}`,{headers})
 .then((result)=>{
 setUserInfo(result.data)
 })

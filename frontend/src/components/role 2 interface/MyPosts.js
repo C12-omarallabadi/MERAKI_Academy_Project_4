@@ -104,7 +104,7 @@ const MyPosts = () => {
   ////////////////////////////////////////////////////////////////
   useEffect(() => {
     axios
-      .get(" http://localhost:5000/posts/myPosts", { headers })
+      .get("https://meraki-academy-project-4-fl11.onrender.com/posts/myPosts", { headers })
       .then((result) => {
         setMyPosts(result.data);
       })
@@ -118,7 +118,7 @@ const MyPosts = () => {
   }, [myPosts]);
   /////////////////////////////////////////////////////////////
 const addLike=()=>{
-  axios.patch("http://localhost:5000/posts/67146272c300ea61ae298fe9",{headers:headers}).
+  axios.patch("https://meraki-academy-project-4-fl11.onrender.com/posts/67146272c300ea61ae298fe9",{headers:headers}).
   then((result)=>{
     console.log("done")
 
@@ -287,7 +287,7 @@ const addLike=()=>{
   const updatePost = () => {
     axios
       .put(
-        `http://localhost:5000/posts/${myPostId}`,
+        `https://meraki-academy-project-4-fl11.onrender.com/posts/${myPostId}`,
         { post: newPost },
         { headers }
       )
@@ -350,7 +350,7 @@ const addLike=()=>{
               <Button
                 onClick={() => {
                   axios
-                    .delete(`http://localhost:5000/posts/${myPostId}`, {
+                    .delete(`https://meraki-academy-project-4-fl11.onrender.com/posts/${myPostId}`, {
                       headers,
                     })
                     .then((result) => {
